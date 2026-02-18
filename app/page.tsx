@@ -1,21 +1,15 @@
-import { Navigation } from "@/components/navigation"
-import { Hero } from "@/components/hero"
-import { Works } from "@/components/works"
-import { TechStack } from "@/components/tech-stack"
-import { SocialLinks } from "@/components/social-links"
-import { ContactForm } from "@/components/contact-form"
-import { Footer } from "@/components/footer"
+import Hero from "./components/hero";
+import NavBar from "./components/NavBar";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
-      <Navigation />
+    <main className="flex min-h-screen flex-col items-center justify-start p-15">
+      
+      <NavBar />
       <Hero />
-      <Works />
-      <TechStack />
-      <SocialLinks />
-      <ContactForm />
-      <Footer />
+
+      {/* Main Content */}
+
     </main>
-  )
+  );
 }
