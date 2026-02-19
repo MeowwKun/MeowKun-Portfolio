@@ -8,76 +8,83 @@ export default function hero() {
     <main>
 
         {/* Hero Section */}
-        
-        <div className="w-full flex flex-col gap-8 p-30">
-            <div className="w-full flex justify-between items-center">
-                <div className="items-center">
-                    <h1 className="text-3xl tracking-[0.45rem]">a <span className="text-[#2A4C4E]">seriously</span> good</h1>
-                    <h1 className="text-3xl tracking-[0.45rem] font-black">CreativeEngineer</h1>
+        <section>
+
+            <div className="w-full flex flex-col gap-8 p-30">
+                <div className="w-full flex justify-between items-center">
+                    <div className="items-center">
+                        <h1 className="text-3xl tracking-[0.45rem]">a <span className="text-[#2A4C4E]">seriously</span> good</h1>
+                        <h1 className="text-3xl tracking-[0.45rem] font-black">CreativeEngineer</h1>
+                    </div>
+
+                    <div className="flex justify-end">
+                        <Image src={logo} alt="Logo" width={300} height={300} />
+                    </div>
                 </div>
 
-                <div className="flex justify-end">
-                    <Image src={logo} alt="Logo" width={300} height={300} />
+                <div className="w-full flex justify-center items-center gap-35 pt-20">
+
+                    <h1 className="text-foreground text-sm tracking-[0.45rem] font-black">AI</h1>
+                    <span className="text-foreground text-sm">•</span>
+                    
+                    <h1 className="text-foreground text-sm tracking-[0.45rem] font-black">Artist</h1>
+                    <span className="text-foreground text-sm">•</span>
+
+                    <h1 className="text-foreground text-sm tracking-[0.45rem] font-black">Cinematographer</h1>
+                    <span className="text-foreground text-sm">•</span>
+
+                    <h1 className="text-foreground text-sm tracking-[0.45rem] font-black">Designer</h1>
+
                 </div>
             </div>
 
-            <div className="w-full flex justify-center items-center gap-35 pt-20">
-
-                <h1 className="text-foreground text-sm tracking-[0.45rem] font-black">AI</h1>
-                <span className="text-foreground text-sm">•</span>
-                
-                <h1 className="text-foreground text-sm tracking-[0.45rem] font-black">Artist</h1>
-                <span className="text-foreground text-sm">•</span>
-
-                <h1 className="text-foreground text-sm tracking-[0.45rem] font-black">Cinematographer</h1>
-                <span className="text-foreground text-sm">•</span>
-
-                <h1 className="text-foreground text-sm tracking-[0.45rem] font-black">Designer</h1>
-
-            </div>
-        </div>
+        </section>
 
         {/* Sky image */}
 
-        <div className="w-full relative">
+        <section>
 
-            <Image src="/banner.jpg" alt="Sky Image" width={1000} height={600} className="w-full h-auto p-2" />
+            <div className="w-full relative">
 
-            {/* Left text */}
-            <div className="absolute left-30 top-30 -translate-y-1/2">
-                <p className="text-foreground text-4xl font-black text-left tracking-[0.45em] leading-relaxed">
-                    Experiments in art,<br />
-                    film and AI
-                </p>
+                <Image src="/banner.jpg" alt="Sky Image" width={1000} height={600} className="w-full h-auto p-2" />
+
+                {/* Left text */}
+                <div className="absolute left-30 top-30 -translate-y-1/2">
+                    <p className="text-foreground text-4xl font-black text-left tracking-[0.45em] leading-relaxed">
+                        Experiments in art,<br />
+                        film and AI
+                    </p>
+                </div>
+
+                {/* Bottom right text */}
+                <div className="absolute right-30 bottom-20">
+                    <p className="text-foreground text-2xl font-black tracking-[0.45em] text-right leading-relaxed">
+                        Turning pixels to<br />
+                        stories
+                    </p>
+                </div>
+
             </div>
 
-            {/* Bottom right text */}
-            <div className="absolute right-30 bottom-20">
-                <p className="text-foreground text-2xl font-black tracking-[0.45em] text-right leading-relaxed">
-                    Turning pixels to<br />
-                    stories
-                </p>
+            <div className="w-full flex justify-between items-center pt-20 px-15">
+
+                <div className="flex flex-col gap-6 max-w-2xl">
+                    <h1 className="text-foreground text-1xl tracking-[0.45rem] font-black">Myself</h1>
+
+                    <p className="text-foreground text-2xl font-black leading-relaxed tracking-[0.45em] text-justify">
+                        I am a creative engineer working at the intersection of  artificial intelligence, cinema and design. 
+                        My work explores visual systems, experimental storytelling, and computational art. I build tools and 
+                        films that blur the line between engineering and emotion.
+                    </p>
+                </div>
+
+                <div className="flex justify-end">
+                    <Image src={myself} alt="My Image" width={500} height={600} className="h-full w-auto pt-13" />
+                </div>
+
             </div>
 
-        </div>
-
-        <div className="w-full flex justify-between items-center pt-20 px-15">
-
-            <div className="flex flex-col gap-6 max-w-2xl">
-                <h1 className="text-foreground text-1xl tracking-[0.45rem] font-black">Myself</h1>
-
-                <p className="text-foreground text-2xl font-black leading-relaxed tracking-[0.45em] text-justify">
-                    I am a creative engineer working at the intersection of  artificial intelligence, cinema and design. 
-                    My work explores visual systems, experimental storytelling, and computational art. I build tools and 
-                    films that blur the line between engineering and emotion.
-                </p>
-            </div>
-
-            <div className="flex justify-end">
-                <Image src={myself} alt="My Image" width={500} height={600} className="h-full w-auto pt-13" />
-            </div>
-
-        </div>
+        </section>
 
     </main>
     )

@@ -11,7 +11,10 @@ export default function NavBar() {
   return (
     <>
       {/* Navbar */}
-      <div className="w-full flex justify-between items-center mb-8">
+    
+        
+        <div className="w-full flex justify-between items-center mb-8">
+          
         <div className="">
           <Image src={logo} alt="Logo" width={70} height={700} />
         </div>
@@ -26,7 +29,12 @@ export default function NavBar() {
         </div>
       </div>
 
-      {/* Full Screen Menu */}
+      
+
+{/* Full Screen Menu */}
+
+      
+
       {isMenuOpen && (
         <div className="fixed inset-0 bg-[#0B0E16] z-50 flex flex-col items-end justify-center pr-16">
           
@@ -117,6 +125,9 @@ export default function NavBar() {
 
         </div>
       )}
+
+      
+
     </>
   );
 }
