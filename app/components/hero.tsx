@@ -73,7 +73,7 @@ export default function hero() {
 
                     <p className="text-foreground text-2xl font-black leading-relaxed tracking-[0.45em] text-justify">
                         I am a creative engineer working at the intersection of  artificial intelligence, cinema and design. 
-                        My work explores visual systems, experimental storytelling, and computational art. I build tools and 
+                        My work explores visual systems, experimental storytelling, and creative computing. I build tools and 
                         films that blur the line between engineering and emotion.
                     </p>
                 </div>
