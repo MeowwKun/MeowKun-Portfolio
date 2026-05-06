@@ -12,7 +12,7 @@ export default function TechStack() {
                 </div>
             </section>
 
-            <section className="w-full max-w-screen-2xl h-200 px-10 pb-30 mx-auto">
+            <section className="w-800 max-w-screen-2xl h-200 px-10 pb-30 mx-auto">
                     {/* First Row - 3 larger boxes */}
                 <div className="grid grid-cols-3 mb-0">
                     <div className="bg-[#2A4C4E] border border-black p-12 h-[250px] flex items-center justify-center">
