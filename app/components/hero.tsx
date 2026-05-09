@@ -10,7 +10,7 @@ export default function hero() {
         {/* Hero Section */}
         <section>
 
-            <div className="w-full flex flex-col gap-8 p-30">
+            <div className="w-full flex flex-col gap-8 p-30" data-reveal>
                 <div className="w-full flex justify-between items-center">
                     <div className="items-center">
                         <h1 className="text-3xl tracking-[0.45rem]">a <span className="text-[#2A4C4E]">seriously</span> good</h1>
@@ -44,12 +44,19 @@ export default function hero() {
 
         <section>
 
-            <div className="w-full relative">
+            <div className="w-full relative" data-reveal>
 
-                <Image src="/banner.jpg" alt="Sky Image" width={1000} height={600} className="w-full h-auto p-2" />
+                <Image
+                    src="/banner.jpg"
+                    alt="Sky Image"
+                    width={1000}
+                    height={600}
+                    className="w-full h-auto p-2"
+                    data-parallax="18"
+                />
 
                 {/* Left text */}
-                <div className="absolute left-30 top-30 -translate-y-1/2">
+                <div className="absolute left-30 top-30 -translate-y-1/2" data-reveal>
                     <p className="text-foreground text-4xl font-black text-left tracking-[0.45em] leading-relaxed">
                         Experiments in art,<br />
                         film and AI
@@ -57,7 +64,7 @@ export default function hero() {
                 </div>
 
                 {/* Bottom right text */}
-                <div className="absolute right-30 bottom-20">
+                <div className="absolute right-30 bottom-20" data-reveal>
                     <p className="text-foreground text-2xl font-black tracking-[0.45em] text-right leading-relaxed">
                         Turning pixels to<br />
                         stories
@@ -66,7 +73,7 @@ export default function hero() {
 
             </div>
 
-            <div className="w-full flex justify-between items-center pt-20 px-15">
+            <div className="w-full flex justify-between items-center pt-20 px-15" data-reveal>
 
                 <div className="flex flex-col gap-6 max-w-2xl">
                     <h1 className="text-foreground text-1xl tracking-[0.45rem] font-black">Myself</h1>

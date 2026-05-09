@@ -71,7 +71,7 @@ export default function Work() {
 
     return (
         <main>
-            <section className="w-full pt-30 pb-20">
+            <section className="w-full pt-30 pb-20" data-reveal>
                 <div className="w-full flex justify-between items-center">
                     <h2 className="text-6xl font-black  tracking-[0.45rem]">
                         WORK <span className="text-xl">&lt;TECH/&gt;</span>
@@ -85,10 +85,11 @@ export default function Work() {
 
             {/* Projects Grid */}
             <section className="w-full px-30 pb-30">
-                <div className="grid grid-cols-10 gap-4 auto-rows-[280px]">
+                <div className="grid grid-cols-10 gap-4 auto-rows-[280px]" data-stagger>
                     {projects.map((project) => (
                         <div
                             key={project.id}
+                            data-stagger-item
                             onClick={() => project.title ? setSelectedProject(project) : undefined}
                             className={`${project.gridSize} ${project.title ? 'bg-background border-2 border-foreground cursor-pointer hover:bg-[#2A4C4E] hover:text-white' : 'bg-[#2A4C4E] border-2 border-foreground'} p-6 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group`}
                         >
