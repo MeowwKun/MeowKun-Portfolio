@@ -71,30 +71,27 @@ export default function Experience() {
 						<div
 							key={item.id}
 							data-stagger-item
-							className="bg-[#2A4C4E] rounded-4xl px-10 py-8 flex items-center justify-between"
+							className="bg-[#2A4C4E] rounded-none px-10 py-8 grid grid-cols-7 items-center"
 						>
-							<div className="flex items-center gap-6">
-								<div className="text-white font-black tracking-[0.2rem]">
-									<p className="text-sm">{String(item.id).padStart(2, "0")}</p>
-									<p className="text-lg font-bold">{item.role}</p>
-									<p className="text-xs opacity-90 mt-1 tracking-[0.05rem]">
-										{item.date}
-									</p>
-								</div>
-								<div className="text-white text-left pl-26">
-									<p className="text-base font-bold tracking-[0.1rem] pl-10">
-										{item.company}
-									</p>
-									<p className="text-sm opacity-90 mt-1 tracking-[0.05rem] pl-10">
-										{item.description}
-									</p>
-									<p className="text-sm opacity-90 mt-3 max-w-xl leading-relaxed pl-10">
-										{item.summary}
-									</p>
-								</div>
+							<div className="text-white font-black tracking-[0.2rem] col-span-1" data-stagger data-stagger-item>
+								<p className="text-sm">{String(item.id).padStart(2, "0")}</p>
+								<p className="text-lg font-bold">{item.role}</p>
+								<p className="text-xs opacity-90 mt-1 tracking-[0.05rem]">
+									{item.date}
+								</p>
 							</div>
-
-							<div className="flex items-center justify-center w-80 px-4">
+							<div className="text-white text-left col-span-5 px-6" data-stagger>
+								<p className="text-base font-bold tracking-[0.1rem]" data-stagger-item>
+									{item.company}
+								</p>
+								<p className="text-sm opacity-90 mt-1 tracking-[0.05rem]" data-stagger-item>
+									{item.description}
+								</p>
+								<p className="text-sm opacity-90 mt-3 max-w-xl leading-relaxed" data-stagger-item>
+									{item.summary}
+								</p>
+							</div>
+							<div className="flex items-center justify-center col-span-1">
 								<Image
 									src={item.image}
 									alt={item.imageAlt}

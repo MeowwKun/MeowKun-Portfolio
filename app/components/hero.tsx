@@ -10,11 +10,25 @@ export default function hero() {
         {/* Hero Section */}
         <section>
 
-            <div className="w-full flex flex-col gap-8 p-30" data-reveal>
+            <div className="w-full flex flex-col gap-8 p-30" data-stagger>
                 <div className="w-full flex justify-between items-center">
                     <div className="items-center">
-                        <h1 className="text-3xl tracking-[0.45rem]">a <span className="text-[#2A4C4E]">seriously</span> good</h1>
-                        <h1 className="text-3xl tracking-[0.45rem] font-black">CreativeEngineer</h1>
+                        <h1 className="text-3xl tracking-[0.45rem]">
+                            a{" "}
+                            <span className="text-[#2A4C4E] inline-block" data-wave>
+                                {"seriously".split("").map((letter, index) => (
+                                    <span
+                                        key={`${letter}-${index}`}
+                                        data-wave-letter
+                                        className="inline-block"
+                                    >
+                                        {letter}
+                                    </span>
+                                ))}
+                            </span>
+                            {" "}good
+                        </h1>
+                        <h1 className="text-3xl tracking-[0.45rem] font-black mt-2">CreativeEngineer</h1>
                     </div>
 
                     <div className="flex justify-end">
@@ -73,9 +87,9 @@ export default function hero() {
 
             </div>
 
-            <div className="w-full flex justify-between items-center pt-20 px-15" data-reveal>
+            <div className="w-full flex justify-between items-center pt-20 px-15" data-stagger>
 
-                <div className="flex flex-col gap-6 max-w-2xl">
+                <div className="flex flex-col gap-6 max-w-2xl" data-stagger>
                     <h1 className="text-foreground text-1xl tracking-[0.45rem] font-black">Myself</h1>
 
                     <p className="text-foreground text-2xl font-black leading-relaxed tracking-[0.45em] text-justify">

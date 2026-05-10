@@ -85,7 +85,7 @@ export default function Work() {
 
             {/* Projects Grid */}
             <section className="w-full px-30 pb-30">
-                <div className="grid grid-cols-10 gap-4 auto-rows-[280px]" data-stagger>
+                <div className="grid grid-cols-10 gap-4 auto-rows-[280px]" data-stagger data-stagger-speed="fast">
                     {projects.map((project) => (
                         <div
                             key={project.id}
