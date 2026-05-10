@@ -5,10 +5,10 @@ export default function TechStack() {
         <main>
             <section className="w-full pt-22 pb-16 flex items-center justify-center" data-reveal>
                 <div className="text-center">
-                    <h2 className="text-6xl font-black tracking-[0.45rem] mb-2">
+                    <h2 className="text-6xl font-black tracking-[0.45rem] mb-2" data-split-text>
                         MODERN
                     </h2>
-                    <h2 className="text-6xl font-black tracking-[0.45rem] text-[#2A4C4E]">
+                    <h2 className="text-6xl font-black tracking-[0.45rem] text-[#2A4C4E]" data-split-text>
                         TECH STACK
                     </h2>
                 </div>

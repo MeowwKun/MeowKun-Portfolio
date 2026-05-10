@@ -59,28 +59,32 @@ export default function Experience() {
 		<main className="w-full">
 			<section className="w-full pt-30 pb-20 pl-30" data-reveal>
 				<div className="w-full flex justify-between items-center">
-					<h2 className="text-6xl font-black tracking-[0.45rem]">
+					<h2 className="text-6xl font-black tracking-[0.45rem]" data-split-text>
 						EXPERIENCE
 					</h2>
 				</div>
 			</section>
 
 			<section className="w-full px-30 pb-30">
-				<div className="flex flex-col gap-6" data-stagger>
+				<div className="flex flex-col gap-6">
 					{experienceItems.map((item) => (
 						<div
 							key={item.id}
-							data-stagger-item
 							className="bg-[#2A4C4E] rounded-none px-10 py-8 grid grid-cols-7 items-center"
+							data-stagger
 						>
-							<div className="text-white font-black tracking-[0.2rem] col-span-1" data-stagger data-stagger-item>
-								<p className="text-sm">{String(item.id).padStart(2, "0")}</p>
-								<p className="text-lg font-bold">{item.role}</p>
-								<p className="text-xs opacity-90 mt-1 tracking-[0.05rem]">
+							<div className="text-white font-black tracking-[0.2rem] col-span-1" data-stagger-item>
+								<p className="text-sm" data-stagger-item>
+									{String(item.id).padStart(2, "0")}
+								</p>
+								<p className="text-lg font-bold" data-stagger-item>
+									{item.role}
+								</p>
+								<p className="text-xs opacity-90 mt-1 tracking-[0.05rem]" data-stagger-item>
 									{item.date}
 								</p>
 							</div>
-							<div className="text-white text-left col-span-5 px-6" data-stagger>
+							<div className="text-white text-left col-span-5 px-6" data-stagger-item>
 								<p className="text-base font-bold tracking-[0.1rem]" data-stagger-item>
 									{item.company}
 								</p>

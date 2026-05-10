@@ -73,11 +73,11 @@ export default function Work() {
         <main>
             <section className="w-full pt-30 pb-20" data-reveal>
                 <div className="w-full flex justify-between items-center">
-                    <h2 className="text-6xl font-black  tracking-[0.45rem]">
+                    <h2 className="text-6xl font-black  tracking-[0.45rem]" data-split-text>
                         WORK <span className="text-xl">&lt;TECH/&gt;</span>
                     </h2>
 
-                    <p className="text-6xl font-black tracking-[0.2rem]">
+                    <p className="text-6xl font-black tracking-[0.2rem]" data-split-text>
                         25' - 26'
                     </p>
                 </div>
@@ -97,7 +97,7 @@ export default function Work() {
                             {project.title && (
                                 <>
                                     <div className="relative z-10">
-                                        <h3 className="text-xl font-bold tracking-wide mb-2">
+                                        <h3 className="text-xl font-bold tracking-wide mb-2" data-split-text>
                                             {project.title}
                                         </h3>
                                     </div>
@@ -130,7 +130,7 @@ export default function Work() {
                             ×
                         </button>
                         
-                        <h2 className="text-4xl font-black mb-4 tracking-wide">
+                        <h2 className="text-4xl font-black mb-4 tracking-wide" data-split-text>
                             {selectedProject.title}
                         </h2>
                         
@@ -142,7 +142,7 @@ export default function Work() {
                             ))}
                         </div>
                         
-                        <p className="text-lg leading-relaxed mb-4">
+                        <p className="text-lg leading-relaxed mb-4" data-split-text>
                             {selectedProject.details}
                         </p>
 

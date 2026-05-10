@@ -2,13 +2,62 @@
 
 import { useEffect } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import { registerGsapPlugins } from "../lib/gsap";
 
 export default function ScrollAnimations() {
 	useEffect(() => {
 		registerGsapPlugins();
+		const prefersReducedMotion =
+			typeof window !== "undefined" &&
+			window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		if (prefersReducedMotion) {
+			return;
+		}
+
+		const splits: SplitText[] = [];
+		const splitMasks: HTMLElement[] = [];
 
 		const ctx = gsap.context(() => {
+			const splitElements = gsap.utils.toArray<HTMLElement>("[data-split-text]");
+			splitElements.forEach((element) => {
+				if (element.dataset.splitReady === "true") {
+					return;
+				}
+				element.dataset.splitReady = "true";
+
+				const split = new SplitText(element, {
+					type: "lines",
+					linesClass: "split-line"
+				});
+				splits.push(split);
+
+				split.lines.forEach((line) => {
+					const mask = document.createElement("div");
+					mask.style.overflow = "hidden";
+					mask.style.display = "block";
+					mask.className = "split-line-mask";
+					splitMasks.push(mask);
+					line.parentNode?.insertBefore(mask, line);
+					mask.appendChild(line);
+					line.style.display = "block";
+				});
+
+				gsap.set(split.lines, { y: "100%" });
+				gsap.to(split.lines, {
+					y: "0%",
+					stagger: 0.05,
+					ease: "power3.out",
+					scrollTrigger: {
+						trigger: element,
+						start: "top 85%",
+						end: "top 40%",
+						scrub: 0.8
+					}
+				});
+			});
+
 			const revealElements = gsap.utils.toArray<HTMLElement>("[data-reveal]");
 			revealElements.forEach((element) => {
 				gsap.fromTo(
@@ -35,6 +84,10 @@ export default function ScrollAnimations() {
 				);
 				const autoItems = Array.from(
 					container.querySelectorAll<HTMLElement>("h1, h2, h3, p, a, li")
+				).filter(
+					(item) =>
+						!item.hasAttribute("data-split-text") &&
+						!item.hasAttribute("data-myself-text")
 				);
 				const items = explicitItems.length ? explicitItems : autoItems;
 				const isFast = container.dataset.staggerSpeed === "fast";
@@ -110,6 +163,148 @@ export default function ScrollAnimations() {
 				});
 			});
 
+			const myselfTextBlocks = gsap.utils.toArray<HTMLElement>("[data-myself-text]");
+			myselfTextBlocks.forEach((container) => {
+				const words = Array.from(
+					container.querySelectorAll<HTMLElement>("[data-myself-word]")
+				);
+				if (!words.length) {
+					return;
+				}
+
+				gsap.fromTo(
+					words,
+					{
+						autoAlpha: 0,
+						x: (index) => (index % 2 === 0 ? -30 : 30)
+					},
+					{
+						autoAlpha: 1,
+						x: 0,
+						ease: "power3.out",
+						stagger: 0.04,
+						scrollTrigger: {
+							trigger: container,
+							start: "top 85%",
+							end: "top 10%",
+							scrub: 1.2
+						}
+					}
+				);
+			});
+
+			const scrollImageContainers = gsap.utils.toArray<HTMLElement>("[data-scroll-image]");
+			scrollImageContainers.forEach((container) => {
+				if (container.hasAttribute("data-overlap-image")) {
+					return;
+				}
+				const image = container.querySelector<HTMLElement>("[data-scroll-image-inner]");
+
+				gsap.fromTo(
+					container,
+					{ scale: 0.82, borderRadius: "2rem" },
+					{
+						scale: 1,
+						borderRadius: "0.5rem",
+						ease: "none",
+						scrollTrigger: {
+							trigger: container,
+							start: "top 90%",
+							end: "top 20%",
+							scrub: 1
+						}
+					}
+				);
+
+				if (image) {
+					gsap.fromTo(
+						image,
+						{ scale: 1.15 },
+						{
+							scale: 1,
+							ease: "none",
+							scrollTrigger: {
+								trigger: container,
+								start: "top 90%",
+								end: "top 20%",
+								scrub: 1
+							}
+						}
+					);
+				}
+			});
+
+			const overlapHero = document.querySelector<HTMLElement>("[data-overlap-hero]");
+			const overlapImage = document.querySelector<HTMLElement>("[data-overlap-image]");
+			if (overlapHero && overlapImage) {
+				const overlapImageInner = overlapImage.querySelector<HTMLElement>(
+					"[data-overlap-image-inner]"
+				);
+				const overlapFrame = overlapImage.querySelector<HTMLElement>(
+					"[data-overlap-frame]"
+				);
+
+				gsap.set(overlapImage, {
+					scale: 0.88,
+					borderRadius: "2rem 2rem 0 0"
+				});
+
+				if (overlapImageInner) {
+					gsap.set(overlapImageInner, { scale: 1.12 });
+				}
+
+				const overlapTimeline = gsap.timeline({
+					scrollTrigger: {
+						trigger: overlapHero,
+						start: "top top",
+						end: "bottom top",
+						scrub: 1
+					}
+				});
+
+				overlapTimeline.to(
+					overlapHero,
+					{
+						opacity: 0.4,
+						scale: 0.95,
+						ease: "none"
+					},
+					0
+				);
+
+				overlapTimeline.to(
+					overlapImage,
+					{
+						borderRadius: "0.5rem",
+						scale: 1,
+						ease: "none"
+					},
+					0
+				);
+
+				if (overlapFrame) {
+					overlapTimeline.to(
+						overlapFrame,
+						{
+							padding: 0,
+							ease: "none"
+						},
+						0
+					);
+				}
+
+				if (overlapImageInner) {
+					overlapTimeline.to(
+						overlapImageInner,
+						{
+							scale: 1,
+							ease: "none"
+						},
+						0
+					);
+				}
+			}
+
 			const marqueeTracks = gsap.utils.toArray<HTMLElement>("[data-marquee-track]");
 			marqueeTracks.forEach((track) => {
 				gsap.to(track, {
@@ -150,7 +345,16 @@ export default function ScrollAnimations() {
 			});
 		});
 
-		return () => ctx.revert();
+		return () => {
+			splits.forEach((split) => split.revert());
+			splitMasks.forEach((mask) => {
+				if (mask.parentNode) {
+					mask.parentNode.removeChild(mask);
+				}
+			});
+			ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+			ctx.revert();
+		};
 	}, []);
 
 	return null;
