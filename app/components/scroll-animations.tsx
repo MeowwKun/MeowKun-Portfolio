@@ -41,7 +41,7 @@ export default function ScrollAnimations() {
 					splitMasks.push(mask);
 					line.parentNode?.insertBefore(mask, line);
 					mask.appendChild(line);
-					line.style.display = "block";
+					(line as HTMLElement).style.display = "block";
 				});
 
 				gsap.set(split.lines, { y: "100%" });
