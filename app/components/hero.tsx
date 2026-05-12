@@ -79,14 +79,14 @@ export default function hero() {
                     alt="Sky Image"
                     width={1000}
                     height={600}
-                    className="w-full h-auto object-cover"
+                    className="w-full h-[600px] md:h-[720px] object-cover"
                     data-scroll-image-inner
                     data-overlap-image-inner
                     data-parallax="18"
                 />
 
                 {/* Left text */}
-                <div className="absolute left-30 top-30 -translate-y-1/2" data-reveal>
+                <div className="absolute left-30 top-40 -translate-y-1/2" data-reveal>
                     <p
                         className="text-foreground text-4xl font-black text-left tracking-[0.45em] leading-relaxed"
                         data-split-text

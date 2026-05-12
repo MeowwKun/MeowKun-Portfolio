@@ -53,7 +53,8 @@ export default function ScrollAnimations() {
 						trigger: element,
 						start: "top 85%",
 						end: "top 40%",
-						scrub: 0.8
+						scrub: 0.8,
+						once: true
 					}
 				});
 			});
@@ -71,7 +72,8 @@ export default function ScrollAnimations() {
 						scrollTrigger: {
 							trigger: element,
 							start: "top 85%",
-							toggleActions: "play none none none"
+							toggleActions: "play none none none",
+							once: true
 						}
 					}
 				);
@@ -109,7 +111,8 @@ export default function ScrollAnimations() {
 						scrollTrigger: {
 							trigger: container,
 							start: "top 85%",
-							toggleActions: "play none none none"
+							toggleActions: "play none none none",
+							once: true
 						}
 					}
 				);
@@ -143,7 +146,8 @@ export default function ScrollAnimations() {
 						scrollTrigger: {
 							trigger: container,
 							start: "top 85%",
-							toggleActions: "play none none none"
+							toggleActions: "play none none none",
+							once: true
 						}
 					}
 				);
@@ -158,7 +162,8 @@ export default function ScrollAnimations() {
 						trigger: element,
 						start: "top bottom",
 						end: "bottom top",
-						scrub: true
+						scrub: true,
+						once: true
 					}
 				});
 			});
@@ -187,7 +192,8 @@ export default function ScrollAnimations() {
 							trigger: container,
 							start: "top 85%",
 							end: "top 10%",
-							scrub: 1.2
+							scrub: 1.2,
+							once: true
 						}
 					}
 				);
@@ -211,7 +217,8 @@ export default function ScrollAnimations() {
 							trigger: container,
 							start: "top 90%",
 							end: "top 20%",
-							scrub: 1
+							scrub: 1,
+							once: true
 						}
 					}
 				);
@@ -227,7 +234,8 @@ export default function ScrollAnimations() {
 								trigger: container,
 								start: "top 90%",
 								end: "top 20%",
-								scrub: 1
+								scrub: 1,
+								once: true
 							}
 						}
 					);
@@ -258,14 +266,15 @@ export default function ScrollAnimations() {
 						trigger: overlapHero,
 						start: "top top",
 						end: "bottom top",
-						scrub: 1
+						scrub: 1,
+						once: true
 					}
 				});
 
 				overlapTimeline.to(
 					overlapHero,
 					{
-						opacity: 0.4,
+						opacity: 1,
 						scale: 0.95,
 						ease: "none"
 					},
@@ -330,7 +339,8 @@ export default function ScrollAnimations() {
 						start: "top top",
 						end: `+=${Math.max(1, items.length) * 240}`,
 						scrub: 1,
-						pin: true
+						pin: true,
+						once: true
 					}
 				});
 
