@@ -16,6 +16,8 @@ import {
   Star,
   Compass,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import type { PanInfo } from "framer-motion";
 
 // ── Cosmos flower SVG accent ──────────────────────────────────────────────────
 const CosmosPetal = ({ className = "", style = {} }) => (
@@ -88,7 +90,7 @@ const FadeCard = ({ children, delay = 0 }: { children: React.ReactNode; delay?: 
 };
 
 // ── Timeline dot ─────────────────────────────────────────────────────────────
-const Dot = ({ active }) => (
+const Dot = ({ active }: { active: boolean }) => (
   <div className="relative flex-shrink-0 w-10 h-10 flex items-center justify-center">
     <div
       className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
@@ -108,7 +110,17 @@ const Dot = ({ active }) => (
 );
 
 // ── Activity card ─────────────────────────────────────────────────────────────
-const ActivityCard = ({ icon: Icon, time, title, note, tag, delay, isLast }) => {
+type ActivityCardProps = {
+  icon: LucideIcon;
+  time?: string;
+  title: string;
+  note?: string;
+  tag?: string;
+  delay?: number;
+  isLast: boolean;
+};
+
+const ActivityCard = ({ icon: Icon, time, title, note, tag, delay = 0, isLast }: ActivityCardProps) => {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -186,7 +198,7 @@ const ActivityCard = ({ icon: Icon, time, title, note, tag, delay, isLast }) => 
 };
 
 // ── Drink option pill ─────────────────────────────────────────────────────────
-const DrinkPill = ({ name, delay }) => {
+const DrinkPill = ({ name, delay }: { name: string; delay: number }) => {
   const [picked, setPicked] = useState(false);
   return (
     <motion.button
@@ -207,7 +219,7 @@ const DrinkPill = ({ name, delay }) => {
 };
 
 // ── Section heading ───────────────────────────────────────────────────────────
-const SectionTitle = ({ children, delay = 0 }) => (
+const SectionTitle = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
   <FadeCard delay={delay}>
     <div className="flex items-center gap-3 mb-5 mt-2">
       <div className="h-px flex-1 bg-gradient-to-r from-sky-200/80 to-transparent" />
@@ -255,7 +267,7 @@ export default function DateItinerary() {
 
   const goNext = () => setStepIndex((i) => Math.min(i + 1, steps.length - 1));
   const goPrev = () => setStepIndex((i) => Math.max(i - 1, 0));
-  const onDragEnd = (_, info) => {
+  const onDragEnd = (_: PointerEvent, info: PanInfo) => {
     if (info.offset.x < -80) {
       goNext();
       return;
