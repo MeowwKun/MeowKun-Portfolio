@@ -133,9 +133,7 @@ function LogoCard({
         <span className="font-montserrat text-[9px] tracking-[0.3em] uppercase font-semibold" style={{ color: meow === "#ffffff" || meow === "#fff" ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>
           {label}
         </span>
-        <span className="font-montserrat text-[9px]" style={{ color: meow === "#ffffff" || meow === "#fff" ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.2)" }}>
-          MK
-        </span>
+
       </div>
     </div>
   );
@@ -364,12 +362,6 @@ export default function MeowKunBrandBook() {
         <div className="font-montserrat text-[10px] tracking-[0.45em] uppercase text-neutral-500 font-semibold">
           Brand Book — 2026
         </div>
-        <div className="font-montserrat font-black text-white text-sm" style={{ letterSpacing: "0.15em" }}>
-          MK
-        </div>
-        <div className="font-montserrat text-[10px] tracking-[0.3em] uppercase text-neutral-500 font-semibold">
-          v1.0
-        </div>
       </nav>
 
       {/* ── HERO ───────────────────────────────────────────────────────────── */}
@@ -429,7 +421,7 @@ export default function MeowKunBrandBook() {
             }}
           >
             <p className="font-montserrat font-light text-neutral-500 text-sm tracking-[0.15em] leading-loose uppercase">
-              Creative Engineer · AI · Cinema · Design
+              Creative Engineer · AI · Cinema · Art · Animation · Design
             </p>
           </div>
         </div>
@@ -444,10 +436,208 @@ export default function MeowKunBrandBook() {
         </div>
       </section>
 
+      {/* ── WHO AM I ────────────────────────────────────────────────────────── */}
+      <section className="px-8 md:px-20 py-32 border-t border-neutral-900">
+        <FadeSection>
+          <SectionLabel n="01" text="Who Am I" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+            <div>
+              <h2
+                className="font-montserrat font-black text-white leading-none mb-8"
+                style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", letterSpacing: "-0.01em" }}
+              >
+                Sujal.<br />
+                <span style={{ color: "#2A4C4E" }}>Artist.</span><br />
+                Builder.<br />
+                Filmmaker.
+              </h2>
+            </div>
+            <div className="space-y-6 pt-2">
+              <p className="font-montserrat font-light text-neutral-400 text-sm leading-loose tracking-wide">
+                I'm Sujal Nepal — a Creative Engineer living at the crossroads of artificial intelligence, cinema, art, and design. I paint landscapes in acrylic and pixels. I build software that feels like something. I film. I animate. What connects it all is a single obsession: making technology feel human.
+              </p>
+              <p className="font-montserrat font-light text-neutral-600 text-sm leading-loose tracking-wide">
+                My work spans full-stack engineering, AI experimentation, cinematography, digital and acrylic painting, and animation. I'm drawn to the horizon — literally in my landscapes, and figuratively in every discipline I push into.
+              </p>
+              <div className="pt-4 grid grid-cols-3 gap-4">
+                {[
+                  { label: "Passion", val: "Painting landscapes — in acrylic, in pixels, in code" },
+                  { label: "Strength", val: "Bridging physical craft and digital engineering" },
+                  { label: "Edge", val: "An artist who builds the tools artists use" },
+                ].map((s) => (
+                  <div key={s.label} className="border border-neutral-900 p-4">
+                    <div className="font-montserrat text-[9px] tracking-[0.3em] uppercase font-semibold mb-2" style={{ color: "#2A4C4E" }}>{s.label}</div>
+                    <div className="font-montserrat font-light text-neutral-600 text-xs leading-loose">{s.val}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </FadeSection>
+      </section>
+
+      {/* ── VISION & MISSION ────────────────────────────────────────────────── */}
+      <section className="px-8 md:px-20 py-32 border-t border-neutral-900">
+        <FadeSection>
+          <SectionLabel n="02" text="Vision & Mission" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="border border-neutral-800 p-10 relative overflow-hidden group hover:border-neutral-700 transition-colors duration-500">
+              <div className="absolute top-0 left-0 w-1 h-full" style={{ background: "#2A4C4E" }} />
+              <div className="font-montserrat text-[9px] tracking-[0.5em] uppercase text-neutral-600 font-semibold mb-6">Vision</div>
+              <p className="font-montserrat font-black text-white leading-tight mb-6" style={{ fontSize: "clamp(1.4rem, 2.5vw, 2rem)", letterSpacing: "-0.01em" }}>
+                A world where technology doesn't replace human expression — it amplifies it.
+              </p>
+              <p className="font-montserrat font-light text-neutral-600 text-sm leading-loose">
+                To become a leading voice at the intersection of AI and creative industries — proving that the most powerful tools are built by people who also understand beauty, narrative, and feeling.
+              </p>
+            </div>
+            <div className="border border-neutral-800 p-10 relative overflow-hidden group hover:border-neutral-700 transition-colors duration-500">
+              <div className="absolute top-0 left-0 w-1 h-full bg-neutral-700" />
+              <div className="font-montserrat text-[9px] tracking-[0.5em] uppercase text-neutral-600 font-semibold mb-6">Mission</div>
+              <p className="font-montserrat font-black text-white leading-tight mb-6" style={{ fontSize: "clamp(1.4rem, 2.5vw, 2rem)", letterSpacing: "-0.01em" }}>
+                To build, paint, film, animate, and design at the edges of what technology and art can become together.
+              </p>
+              <p className="font-montserrat font-light text-neutral-600 text-sm leading-loose">
+                Through open-source tools, cinematic projects, and published thinking, I create work that helps others see the creative potential in emerging technology — and the engineering rigour behind great art.
+              </p>
+            </div>
+          </div>
+        </FadeSection>
+      </section>
+
+      {/* ── BRAND STORY ─────────────────────────────────────────────────────── */}
+      <section className="px-8 md:px-20 py-32 border-t border-neutral-900">
+        <FadeSection>
+          <SectionLabel n="03" text="Brand Story" />
+          <div className="max-w-3xl">
+            <h3 className="font-montserrat font-black text-white mb-12 leading-tight" style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)", letterSpacing: "-0.01em" }}>
+              The Frame Before<br /><span style={{ color: "#2A4C4E" }}>the Cut.</span>
+            </h3>
+            <div className="space-y-0">
+              {[
+                {
+                  period: "The Beginning",
+                  body: "It started with three separate loves: the blank canvas, the blank terminal, and the blank frame. Acrylic on paper — slow, committed, impossible to undo. Code — precise, logical, satisfying. Cinema — atmospheric, emotional, alive. For a long time these lived in separate rooms.",
+                },
+                {
+                  period: "The Collision",
+                  body: "Then came AI — and suddenly the wall between the rooms dissolved. Generative models, creative pipelines, tools that could render mood and generate imagery from language. Engineering and art weren't opposites anymore. They were the same discipline, seen from different angles.",
+                },
+                {
+                  period: "Meow Kun",
+                  body: "The brand became the entity that holds it all. Meow Kun is the creative studio — the painter, the filmmaker, the animator, the engineer. Sujal is the person behind it: curious, precise, warm. The landscapes on canvas and the landscapes rendered in code are the same impulse: find the horizon, paint toward it.",
+                },
+                {
+                  period: "Now",
+                  body: "The work continues to evolve — each painting a new study in light, each project a new scene, each animation a new language being learned. The through-line is always the same: make technology feel like it has a soul.",
+                },
+              ].map((ch, i) => (
+                <div key={ch.period} className="flex gap-8 py-8 border-b border-neutral-900 group">
+                  <div className="flex flex-col items-center">
+                    <div className="w-2 h-2 rounded-full border border-neutral-700 mt-1 group-hover:border-neutral-500 transition-colors duration-500" style={{ minWidth: "8px" }} />
+                    {i < 3 && <div className="w-px flex-1 bg-neutral-900 mt-2" />}
+                  </div>
+                  <div className="pb-2">
+                    <div className="font-montserrat text-[9px] tracking-[0.4em] uppercase font-semibold mb-3" style={{ color: "#2A4C4E" }}>{ch.period}</div>
+                    <p className="font-montserrat font-light text-neutral-500 text-sm leading-loose">{ch.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </FadeSection>
+      </section>
+
+      {/* ── CORE VALUES ─────────────────────────────────────────────────────── */}
+      <section className="px-8 md:px-20 py-32 border-t border-neutral-900">
+        <FadeSection>
+          <SectionLabel n="04" text="Core Values" />
+          <p className="font-montserrat font-light text-neutral-600 text-sm leading-loose tracking-wide max-w-lg mb-16">
+            Six principles that shape every decision — from how a function is named to how a frame is composed.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[
+              { n: "01", title: "Intentionality", body: "Nothing is accidental. Every design choice, every line of code, every cut in the edit carries deliberate meaning. Ask why before asking how." },
+              { n: "02", title: "Craft Over Speed", body: "Acrylic paint cannot be undone. That physical truth shapes everything — every line of code, every cut in the edit. Quality is respect: for the audience, for the collaborator, for the work itself." },
+              { n: "03", title: "Curiosity Without Borders", body: "The best ideas live at the edges of disciplines. Stay perpetually in-between: too technical for the artists, too artistic for the engineers." },
+              { n: "04", title: "Warmth in Precision", body: "Rigour without empathy is cold. The most precise systems should still feel human. Technical excellence is a form of care." },
+              { n: "05", title: "Restraint as Strength", body: "A landscape is mostly sky and silence. What you leave out — the unseen horizon, the empty canvas — defines the work as much as what you put in. Negative space is an active decision." },
+              { n: "06", title: "Open by Default", body: "Share the process. Publish the thinking. Build in public. Generosity with knowledge compounds." },
+            ].map((v) => (
+              <div key={v.n} className="border border-neutral-900 p-7 group hover:border-neutral-800 transition-all duration-500 hover:bg-neutral-900/20">
+                <div className="font-montserrat font-black text-neutral-800 text-3xl mb-4 group-hover:text-neutral-700 transition-colors duration-500">{v.n}</div>
+                <div className="font-montserrat font-semibold text-white text-sm tracking-[0.12em] uppercase mb-3">{v.title}</div>
+                <p className="font-montserrat font-light text-neutral-600 text-sm leading-loose">{v.body}</p>
+              </div>
+            ))}
+          </div>
+        </FadeSection>
+      </section>
+
+      {/* ── CONTENT STRATEGY + CONTACT ──────────────────────────────────────── */}
+      <section className="px-8 md:px-20 py-32 border-t border-neutral-900">
+        <FadeSection>
+          <SectionLabel n="05" text="Content Strategy & Networking" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20">
+            <div>
+              <div className="font-montserrat text-[9px] tracking-[0.4em] uppercase font-semibold mb-6" style={{ color: "#2A4C4E" }}>Target Audience</div>
+              <div className="space-y-4">
+                {[
+                  { who: "Creative Technologists", desc: "Builders who move between disciplines. Engineers who design. Designers who code." },
+                  { who: "AI & Design Community", desc: "Practitioners exploring the creative frontier of generative tools and visual AI." },
+                  { who: "Art & Animation Community", desc: "Digital and traditional artists, animators, and illustrators navigating the evolving creative landscape." },
+                  { who: "Filmmakers & Cinematographers", desc: "Visual storytellers who are curious about technology as a creative partner." },
+                  { who: "Studio & Agency Creative Leads", desc: "Decision-makers looking for collaborators who understand both craft and code." },
+                ].map((a) => (
+                  <div key={a.who} className="flex gap-4 py-4 border-b border-neutral-900">
+                    <div className="w-1 h-full" style={{ background: "#2A4C4E", minWidth: "2px", alignSelf: "stretch" }} />
+                    <div>
+                      <div className="font-montserrat font-semibold text-white text-xs tracking-[0.1em] uppercase mb-1">{a.who}</div>
+                      <div className="font-montserrat font-light text-neutral-600 text-sm leading-loose">{a.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="font-montserrat text-[9px] tracking-[0.4em] uppercase font-semibold mb-6" style={{ color: "#2A4C4E" }}>Content Pillars</div>
+              <div className="space-y-3 mb-10">
+                {[
+                  { platform: "Portfolio / meowkun.art", type: "Primary canvas. Full case studies, project deep-dives, brand expression." },
+                  { platform: "LinkedIn (Sujal Nepal)", type: "Thought leadership essays. Lessons from building at the AI-creative intersection." },
+                  { platform: "GitHub (MeowKun)", type: "Open source tools, creative engineering experiments, public repositories." },
+                  { platform: "Instagram / Socials", type: "Art portfolio. Acrylic landscapes. Digital paintings. Animation experiments. Film stills. AI outputs. Process." },
+                ].map((p) => (
+                  <div key={p.platform} className="flex gap-4 items-start group py-3 border-b border-neutral-900">
+                    <div className="font-montserrat font-semibold text-xs tracking-[0.1em] uppercase text-neutral-500 min-w-[140px] pt-0.5 group-hover:text-neutral-400 transition-colors duration-300">{p.platform}</div>
+                    <div className="font-montserrat font-light text-neutral-700 text-sm leading-loose">{p.type}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="font-montserrat text-[9px] tracking-[0.4em] uppercase font-semibold mb-5" style={{ color: "#2A4C4E" }}>Contact & Networking</div>
+              <div className="border border-neutral-900 p-6 space-y-4">
+                {[
+                  { label: "Web", val: "meowkun.art" },
+                  { label: "Email", val: "via sujal75.n@gmail.com" },
+                  { label: "Handle", val: "@meowkun" },
+                  { label: "Network", val: "LinkedIn — Sujal Nepal" },
+                ].map((c) => (
+                  <div key={c.label} className="flex items-center gap-6">
+                    <div className="font-montserrat text-[9px] tracking-[0.3em] uppercase text-neutral-600 font-semibold min-w-[60px]">{c.label}</div>
+                    <div className="h-px flex-1 bg-neutral-900" />
+                    <div className="font-montserrat font-light text-neutral-400 text-sm">{c.val}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </FadeSection>
+      </section>
+
       {/* ── BRAND PHILOSOPHY ────────────────────────────────────────────────── */}
       <section className="px-8 md:px-20 py-32 border-t border-neutral-900">
         <FadeSection>
-          <SectionLabel n="01" text="Brand Philosophy" />
+          <SectionLabel n="06" text="Brand Philosophy" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             <div>
               <h2
@@ -484,7 +674,7 @@ export default function MeowKunBrandBook() {
       {/* ── LOGO SYSTEM ─────────────────────────────────────────────────────── */}
       <section className="px-8 md:px-20 py-32 border-t border-neutral-900">
         <FadeSection>
-          <SectionLabel n="02" text="Logo System" />
+          <SectionLabel n="07" text="Logo System" />
 
           {/* Primary logo explanation */}
           <div className="mb-16">
@@ -531,7 +721,7 @@ export default function MeowKunBrandBook() {
       {/* ── COLOR SYSTEM ────────────────────────────────────────────────────── */}
       <section className="px-8 md:px-20 py-32 border-t border-neutral-900">
         <FadeSection>
-          <SectionLabel n="03" text="Color System" />
+          <SectionLabel n="08" text="Color System" />
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-16">
             <ColorSwatch hex="#0B0E16" name="Void" role="Primary background. Cinematic deep black. The empty frame before creation." />
             <ColorSwatch hex="#2A4C4E" name="Deep Teal" role="The creative pulse. Used sparingly as accent, hover, and secondary logo element." />
@@ -560,7 +750,7 @@ export default function MeowKunBrandBook() {
       {/* ── TYPOGRAPHY ──────────────────────────────────────────────────────── */}
       <section className="px-8 md:px-20 py-32 border-t border-neutral-900">
         <FadeSection>
-          <SectionLabel n="04" text="Typography System" />
+          <SectionLabel n="09" text="Typography System" />
 
           <div className="mb-10">
             <div className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-neutral-600 font-semibold mb-3">Typeface</div>
@@ -605,7 +795,7 @@ export default function MeowKunBrandBook() {
       {/* ── CLEAR SPACE + DON'TS ────────────────────────────────────────────── */}
       <section className="px-8 md:px-20 py-32 border-t border-neutral-900">
         <FadeSection>
-          <SectionLabel n="05" text="Logo Usage" />
+          <SectionLabel n="10" text="Logo Usage" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20">
             <div>
@@ -666,7 +856,7 @@ export default function MeowKunBrandBook() {
       {/* ── MOTION LANGUAGE ─────────────────────────────────────────────────── */}
       <section className="px-8 md:px-20 py-32 border-t border-neutral-900">
         <FadeSection>
-          <SectionLabel n="06" text="Motion & Visual Language" />
+          <SectionLabel n="11" text="Motion & Visual Language" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -710,7 +900,7 @@ export default function MeowKunBrandBook() {
       {/* ── CREATIVE DIRECTION ──────────────────────────────────────────────── */}
       <section className="px-8 md:px-20 py-32 border-t border-neutral-900">
         <FadeSection>
-          <SectionLabel n="07" text="Creative Direction" />
+          <SectionLabel n="12" text="Creative Direction" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-24 items-center mb-20">
             <div>
               <h3 className="font-montserrat font-black text-white mb-6" style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>
@@ -724,10 +914,11 @@ export default function MeowKunBrandBook() {
             </div>
             <div className="space-y-4">
               {[
-                { key: "Imagery", val: "High contrast. Monochrome leading. Deep blacks, singular white subjects. Film grain present." },
-                { key: "Atmosphere", val: "Dark by default. The void is home. Teal appears like a light source in the dark." },
-                { key: "Space", val: "Generous. Asymmetric. Typography bleeds. Grids break. Silence is intentional." },
-                { key: "Texture", val: "Subtle film grain overlay on all surfaces. Never smooth to the point of sterility." },
+                { key: "Imagery", val: "High contrast. Monochrome leading. Deep blacks, singular white subjects. Landscape-informed compositions: wide, atmospheric, horizon-anchored." },
+                { key: "Atmosphere", val: "Dark by default. The void is home. Teal appears like a light source in the dark — the way golden hour breaks over a painted horizon." },
+                { key: "Space", val: "Generous. Asymmetric. Like a landscape — mostly sky, mostly silence. Typography bleeds. Grids break intentionally." },
+                { key: "Texture", val: "Subtle film grain on all surfaces — a nod to both acrylic brush texture and analog film. Never smooth to the point of sterility." },
+                { key: "Motion", val: "Animation informed by landscape: slow pans, atmospheric dissolves, unhurried transitions. Movement as mood, not mechanics." },
               ].map((r) => (
                 <div key={r.key} className="flex gap-4 py-4 border-b border-neutral-900 group">
                   <div className="font-montserrat font-semibold text-xs tracking-[0.2em] uppercase text-neutral-600 min-w-[90px] pt-0.5 group-hover:text-neutral-400 transition-colors duration-300">{r.key}</div>
@@ -742,7 +933,7 @@ export default function MeowKunBrandBook() {
       {/* ── APPLICATION MOCKUPS ─────────────────────────────────────────────── */}
       <section className="px-8 md:px-20 py-32 border-t border-neutral-900">
         <FadeSection>
-          <SectionLabel n="08" text="Application Mockups" />
+          <SectionLabel n="13" text="Application Mockups" />
           <p className="font-montserrat font-light text-neutral-600 text-sm leading-loose tracking-wide max-w-lg mb-16">
             Brand applications across physical and digital formats. Every surface is an opportunity to extend the identity with consistency and restraint.
           </p>
@@ -783,7 +974,7 @@ export default function MeowKunBrandBook() {
             <div>
               <LogoMark size="lg" meowColor="#ffffff" kunColor="#2A4C4E" />
               <div className="mt-6 font-montserrat font-light text-neutral-700 text-xs tracking-[0.2em] leading-loose">
-                Sujal · Creative Engineer<br />
+                Sujal Nepal · Creative Engineer · Artist · Animator<br />
                 meowkun.art
               </div>
             </div>
