@@ -21,8 +21,7 @@ const DaisyFlower = ({ size = 34, opacity = 0.55, petalColor = "#ffffff", center
         stroke="rgba(0,0,0,0.45)" strokeWidth="1.2"
         transform={`rotate(${deg} 30 30) translate(0 -10)`} />
     ))}
-    <circle cx="30" cy="30" r="6" fill={centerColor} opacity="0.95" stroke="rgba(0,0,0,0.3)" strokeWidth="0.8"
- />
+    <circle cx="30" cy="30" r="6" fill={centerColor} opacity="0.95" stroke="rgba(0,0,0,0.3)" strokeWidth="0.8" />
   </svg>
 );
 
@@ -66,27 +65,45 @@ const PageDots = ({ total, current, goTo }: { total: number; current: number; go
   </div>
 );
 
-const Btn = ({ onClick, label, primary }: { onClick: () => void; label: string; primary?: boolean }) => (
-  <button
-    type="button"
-    onClick={onClick}
-    onTouchStart={onClick}
-    onPointerUp={onClick}
-    style={{
-    fontFamily:"'Josefin Sans',sans-serif", fontSize:"0.62rem", letterSpacing:"0.22em",
-    textTransform:"uppercase", fontWeight:400,
-    color: primary ? "#fff" : "#2c7a94",
-    background: primary ? "linear-gradient(135deg,#5bb8d4,#3da0c0)" : "rgba(255,255,255,0.55)",
-    border: primary ? "none" : "1px solid rgba(91,184,212,0.5)",
-    padding: primary ? "12px 34px" : "10px 26px",
-    borderRadius:99, cursor:"pointer",
-    boxShadow: primary ? "0 4px 20px rgba(91,184,212,0.35)" : "none",
-    backdropFilter:"blur(6px)",
-    transition:"all 0.2s",
-  }}>
-    {label}
-  </button>
-);
+const Btn = ({ onClick, label, primary }: { onClick: () => void; label: string; primary?: boolean }) => {
+  const ref = useRef<HTMLButtonElement>(null);
+
+  const handleClick = () => {
+    const el = ref.current;
+    if (el) {
+      el.style.transform = "scale(0.94)";
+      el.style.opacity = "0.8";
+      setTimeout(() => {
+        if (el) { el.style.transform = ""; el.style.opacity = ""; }
+        onClick();
+      }, 130);
+    } else {
+      onClick();
+    }
+  };
+
+  return (
+    <button
+      ref={ref}
+      type="button"
+      onClick={handleClick}
+      style={{
+        fontFamily:"'Josefin Sans',sans-serif", fontSize:"0.62rem", letterSpacing:"0.22em",
+        textTransform:"uppercase", fontWeight:400,
+        color: primary ? "#fff" : "#2c7a94",
+        background: primary ? "linear-gradient(135deg,#5bb8d4,#3da0c0)" : "rgba(255,255,255,0.55)",
+        border: primary ? "none" : "1px solid rgba(91,184,212,0.5)",
+        padding: primary ? "12px 34px" : "10px 26px",
+        borderRadius:99, cursor:"pointer",
+        boxShadow: primary ? "0 4px 20px rgba(91,184,212,0.35)" : "none",
+        backdropFilter:"blur(6px)",
+        transition:"transform 0.15s cubic-bezier(0.34,1.56,0.64,1), opacity 0.15s, box-shadow 0.2s",
+      }}
+    >
+      {label}
+    </button>
+  );
+};
 
 function spawnConfetti(container: HTMLDivElement) {
   const colors = ["#5bb8d4","#93d5e8","#b8ecf5","#ffd6e0","#ffe8a3","#c8f0c8"];
@@ -107,7 +124,65 @@ function spawnConfetti(container: HTMLDivElement) {
   setTimeout(() => { container.innerHTML = ""; }, 1800);
 }
 
+const pseudoRandom = (seed: number, index: number, offset = 0) => {
+  const x = Math.sin(seed * 12.9898 + index * 78.233 + offset * 37.719) * 43758.5453;
+  return x - Math.floor(x);
+};
+
+const floating = [
+  { kind: "cosmos", size: 72, x: "3%",  y: "8%",  delay: 0.1, color: "#991b1b", dy: -24, rot: 14,  dur: 8.2, dx: 14 },
+  { kind: "daisy",  size: 44, x: "12%", y: "26%", delay: 1.1, color: "#fef2f2", centerColor: "#b45309", dy: -16, rot: -12, dur: 7.4, dx: 10 },
+  { kind: "cosmos", size: 78, x: "9%",  y: "68%", delay: 0.6, color: "#0e7490", dy: -28, rot: 16,  dur: 9.1, dx: 16 },
+  { kind: "daisy",  size: 40, x: "24%", y: "84%", delay: 1.5, color: "#ede9fe", centerColor: "#9f1239", dy: -14, rot: 10,  dur: 7.6, dx: 11 },
+  { kind: "daisy",  size: 38, x: "74%", y: "30%", delay: 1.7, color: "#f8fafc", centerColor: "#b91c1c", dy: -12, rot: -10, dur: 7.2, dx: 10 },
+  { kind: "cosmos", size: 64, x: "86%", y: "9%",  delay: 0.4, color: "#c2410c", dy: -26, rot: 18,  dur: 9.0, dx: 16 },
+  { kind: "cosmos", size: 48, x: "90%", y: "48%", delay: 1.3, color: "#1e3a8a", dy: -18, rot: -10, dur: 7.8, dx: 12 },
+  { kind: "daisy",  size: 42, x: "80%", y: "72%", delay: 1.6, color: "#fef9c3", centerColor: "#a16207", dy: -15, rot: 12,  dur: 7.6, dx: 11 },
+  { kind: "cosmos", size: 60, x: "58%", y: "86%", delay: 0.8, color: "#9f1239", dy: -24, rot: -14, dur: 8.6, dx: 14 },
+  { kind: "daisy",  size: 36, x: "34%", y: "56%", delay: 1.9, color: "#fefefe", centerColor: "#5b21b6", dy: -13, rot: 9,   dur: 7.1, dx: 10 },
+  { kind: "daisy",  size: 34, x: "6%",  y: "40%", delay: 0.7, color: "#fff7ed", centerColor: "#9f1239", dy: -14, rot: -11, dur: 7.3, dx: 10 },
+];
+
+const LoadingScreen = ({ onDone }: { onDone: () => void }) => {
+  const [fading, setFading] = useState(false);
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setFading(true), 2400);
+    const t2 = setTimeout(() => onDone(), 3000);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, [onDone]);
+
+  return (
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 100,
+      background: "linear-gradient(160deg,#e8f7fc 0%,#d0eef8 40%,#e4f5fb 70%,#f0faff 100%)",
+      display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1.4rem",
+      transition: "opacity 0.6s ease",
+      opacity: fading ? 0 : 1,
+      pointerEvents: fading ? "none" : "all",
+    }}>
+      <style>{`
+        @keyframes diSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes diPulse { 0%,100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 0.9; transform: scale(1.08); } }
+      `}</style>
+      <div style={{ animation: "diSpin 1.6s linear infinite" }}>
+        <CosmosFlower size={62} opacity={0.8} color="#3da0c0" />
+      </div>
+      <div style={{
+        fontFamily: "'Josefin Sans', sans-serif",
+        fontSize: "0.58rem", letterSpacing: "0.3em",
+        textTransform: "uppercase", color: "#2f6f84",
+        fontWeight: 300, opacity: 0.7,
+        animation: "diPulse 1.8s ease-in-out infinite",
+      }}>
+        loading...
+      </div>
+    </div>
+  );
+};
+
 export default function DateItinerary() {
+  const [loaded, setLoaded] = useState(false);
   const [page, setPage] = useState(0);
   const [noCount, setNoCount] = useState(0);
   const [noDx, setNoDx] = useState(0);
@@ -131,19 +206,13 @@ export default function DateItinerary() {
   };
 
   const noLabels = [
-    "No",
-    "Are you sure?",
-    "I'll behave",
-    "Pleaseee",
-    "Really sure?",
-    "Come on 😭",
-    "Last chance...",
-    "Okay fine... yes?",
+    "No", "Are you sure?", "I'll behave", "Pleaseee",
+    "Really sure?", "Come on 😭", "Last chance...", "Okay fine... yes?",
   ];
   const hints = [
-    "it's running away 🙈","it really doesn't want to be pressed...",
-    "more yes buttons appearing...","getting smaller 👀",
-    "basically microscopic now","just press yes lol","last chance (not really)",
+    "it's running away 🙈", "it really doesn't want to be pressed...",
+    "more yes buttons appearing...", "getting smaller 👀",
+    "basically microscopic now", "just press yes lol", "last chance (not really)",
   ];
 
   const dodgeNo = () => {
@@ -163,12 +232,14 @@ export default function DateItinerary() {
   };
 
   const bg: React.CSSProperties = {
-    minHeight:"100vh",
-    background:"linear-gradient(160deg,#e8f7fc 0%,#d0eef8 40%,#e4f5fb 70%,#f0faff 100%)",
-    fontFamily:"'Lato',sans-serif",
-    color:"#2c5f70",
-    overflowX:"hidden",
-    position:"relative",
+    minHeight: "100vh",
+    background: "linear-gradient(160deg,#e8f7fc 0%,#d0eef8 40%,#e4f5fb 70%,#f0faff 100%)",
+    fontFamily: "'Lato',sans-serif",
+    color: "#2c5f70",
+    overflowX: "hidden",
+    position: "relative",
+    opacity: loaded ? 1 : 0,
+    transition: "opacity 0.4s ease",
   };
 
   const screen: React.CSSProperties = {
@@ -193,66 +264,53 @@ export default function DateItinerary() {
     color:"#3e5f6b", lineHeight:1.65, maxWidth:290, marginBottom:"1.8rem",
     fontStyle:"italic",
   };
-const pseudoRandom = (seed: number, index: number, offset = 0) => {
-  const x = Math.sin(seed * 12.9898 + index * 78.233 + offset * 37.719) * 43758.5453;
-  return x - Math.floor(x);
-};
-const floating = [
-  { kind: "cosmos", size: 72, x: "3%",  y: "8%",  delay: 0.1, color: "#991b1b", dy: -24, rot: 14,  dur: 8.2, dx: 14 },
-  { kind: "daisy",  size: 44, x: "12%", y: "26%", delay: 1.1, color: "#fef2f2", centerColor: "#b45309", dy: -16, rot: -12, dur: 7.4, dx: 10 },
-  { kind: "cosmos", size: 78, x: "9%",  y: "68%", delay: 0.6, color: "#0e7490", dy: -28, rot: 16,  dur: 9.1, dx: 16 },
-  { kind: "daisy",  size: 40, x: "24%", y: "84%", delay: 1.5, color: "#ede9fe", centerColor: "#9f1239", dy: -14, rot: 10,  dur: 7.6, dx: 11 },
-  { kind: "daisy",  size: 38, x: "74%", y: "30%", delay: 1.7, color: "#f8fafc", centerColor: "#b91c1c", dy: -12, rot: -10, dur: 7.2, dx: 10 },
-  { kind: "cosmos", size: 64, x: "86%", y: "9%",  delay: 0.4, color: "#c2410c", dy: -26, rot: 18,  dur: 9.0, dx: 16 },
-  { kind: "cosmos", size: 48, x: "90%", y: "48%", delay: 1.3, color: "#1e3a8a", dy: -18, rot: -10, dur: 7.8, dx: 12 },
-  { kind: "daisy",  size: 42, x: "80%", y: "72%", delay: 1.6, color: "#fef9c3", centerColor: "#a16207", dy: -15, rot: 12,  dur: 7.6, dx: 11 },
-  { kind: "cosmos", size: 60, x: "58%", y: "86%", delay: 0.8, color: "#9f1239", dy: -24, rot: -14, dur: 8.6, dx: 14 },
-  { kind: "daisy",  size: 36, x: "34%", y: "56%", delay: 1.9, color: "#fefefe", centerColor: "#5b21b6", dy: -13, rot: 9,   dur: 7.1, dx: 10 },
-  { kind: "daisy",  size: 34, x: "6%",  y: "40%", delay: 0.7, color: "#fff7ed", centerColor: "#9f1239", dy: -14, rot: -11, dur: 7.3, dx: 10 },
-];
 
   return (
     <>
+      {!loaded && <LoadingScreen onDone={() => setLoaded(true)} />}
+
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Josefin+Sans:wght@200;300;400&family=Lato:ital,wght@0,300;0,400;1,300;1,400&display=swap');
         * { box-sizing: border-box; }
         button:focus { outline: none; }
         @keyframes diFloat {
-          0%,100%{ transform: translateY(0) translateX(0) rotate(0deg); }
-          50%{ transform: translateY(var(--float-y, -12px)) translateX(var(--float-x, 8px)) rotate(var(--float-r, 8deg)); }
+          0%,100% { transform: translateY(0) translateX(0) rotate(0deg); }
+          50% { transform: translateY(var(--float-y, -12px)) translateX(var(--float-x, 8px)) rotate(var(--float-r, 8deg)); }
         }
-        @keyframes diFade { from{ opacity:0; transform: translateY(10px); } to{ opacity:1; transform: translateY(0); } }
-        @keyframes diPop { from{ opacity:0; transform: scale(0.9); } to{ opacity:1; transform: scale(1); } }
-        .di-screen { animation: diFade 0.45s ease; }
-        .di-float { position: absolute; animation: diFloat var(--float-d, 7s) ease-in-out infinite; opacity: 0.7; pointer-events: none; }
+        @keyframes diSlideIn {
+          from { opacity: 0; transform: translateY(22px) scale(0.97); }
+          to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes diPop {
+          from { opacity: 0; transform: scale(0.9); }
+          to   { opacity: 1; transform: scale(1); }
+        }
+        .di-screen  { animation: diSlideIn 1.1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .di-float   { position: absolute; animation: diFloat var(--float-d, 7s) ease-in-out infinite; opacity: 0.7; pointer-events: none; }
         .di-sticker { animation: diPop 0.35s ease; }
       `}</style>
 
       <div style={bg}>
+
+        {/* Floating flowers */}
         <div style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:1 }}>
           {floating.map((f, i) => (
-            <div
-              key={i}
-              className="di-float"
-              style={{
-                left: f.x,
-                top: f.y,
-                animationDelay: `${f.delay}s`,
-                "--float-x": `${(f.dx ?? 10) * (0.7 + pseudoRandom(floatSeed, i, 1) * 0.9)}px`,
-                "--float-y": `${(f.dy ?? -12) * (0.7 + pseudoRandom(floatSeed, i, 2) * 0.9)}px`,
-                "--float-r": `${(f.rot ?? 8) * (0.7 + pseudoRandom(floatSeed, i, 3) * 0.9)}deg`,
-                "--float-d": `${(f.dur ?? 7) * 1.2}s`,
-              } as React.CSSProperties}
-            >
-              {f.kind === "daisy" ? (
-                <DaisyFlower size={f.size} opacity={0.7} petalColor={f.color} centerColor={f.centerColor} />
-              ) : (
-                <CosmosFlower size={f.size} opacity={0.5} color={f.color} />
-              )}
+            <div key={i} className="di-float" style={{
+              left: f.x, top: f.y,
+              animationDelay: `${f.delay}s`,
+              "--float-x": `${(f.dx ?? 10) * (0.7 + pseudoRandom(floatSeed, i, 1) * 0.9)}px`,
+              "--float-y": `${(f.dy ?? -12) * (0.7 + pseudoRandom(floatSeed, i, 2) * 0.9)}px`,
+              "--float-r": `${(f.rot ?? 8) * (0.7 + pseudoRandom(floatSeed, i, 3) * 0.9)}deg`,
+              "--float-d": `${(f.dur ?? 7) * 1.2}s`,
+            } as React.CSSProperties}>
+              {f.kind === "daisy"
+                ? <DaisyFlower size={f.size} opacity={0.7} petalColor={f.color} centerColor={f.centerColor} />
+                : <CosmosFlower size={f.size} opacity={0.32} color={f.color} />}
             </div>
           ))}
         </div>
-        {/* Soft blobs */}
+
+        {/* Blobs */}
         <div style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:0, overflow:"hidden" }}>
           <div style={{ position:"absolute", width:500, height:500, borderRadius:"50%", background:"radial-gradient(circle,rgba(91,184,212,0.18) 0%,transparent 70%)", top:"-10%", right:"-8%", filter:"blur(40px)" }} />
           <div style={{ position:"absolute", width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle,rgba(147,213,232,0.14) 0%,transparent 70%)", bottom:"5%", left:"-6%", filter:"blur(40px)" }} />
@@ -263,12 +321,8 @@ const floating = [
         {/* ── Page 0: I want to tell you something ── */}
         {page === 0 && (
           <div style={screen} className="di-screen">
-            <img
-              src="/gifpuk_files/200(30).webp"
-              alt="gifpuk sticker"
-              className="di-sticker"
-              style={{ width:140, height:"auto", marginBottom:"1.3rem" }}
-            />
+            <img src="/gifpuk_files/200(30).webp" alt="" className="di-sticker"
+              style={{ width:140, height:"auto", marginBottom:"1.3rem" }} />
             <div style={eyebrow}>hey</div>
             <div style={big}>I want to tell<br />you something.</div>
             <Btn onClick={() => goTo(1)} label="tell me ↓" />
@@ -282,12 +336,8 @@ const floating = [
             <div style={{ marginBottom:"1.8rem" }}>
               <CosmosFlower size={56} opacity={0.6} />
             </div>
-            <img
-              src="/gifpuk_files/200(5).webp"
-              alt="gifpuk sticker"
-              className="di-sticker"
-              style={{ width:120, height:"auto", marginBottom:"1.2rem" }}
-            />
+            <img src="/gifpuk_files/200(5).webp" alt="" className="di-sticker"
+              style={{ width:120, height:"auto", marginBottom:"1.2rem" }} />
             <div style={eyebrow}>okay so</div>
             <div style={big}>I think you're<br />really cute.</div>
             <div style={{ display:"flex", gap:"0.8rem", marginBottom:"2rem", opacity:0.5 }}>
@@ -304,29 +354,21 @@ const floating = [
             <div style={{ marginBottom:"1.8rem", opacity:0.55 }}>
               <CosmosFlower size={48} />
             </div>
-            <img
-              src="/gifpuk_files/200(15).webp"
-              alt="gifpuk sticker"
-              className="di-sticker"
-              style={{ width:120, height:"auto", marginBottom:"1.2rem" }}
-            />
+            <img src="/gifpuk_files/200(15).webp" alt="" className="di-sticker"
+              style={{ width:120, height:"auto", marginBottom:"1.2rem" }} />
             <div style={eyebrow}>and also</div>
             <div style={big}>I'd like to<br />take you out<br />sometime.</div>
-            <div style={sub}>An actual date</div>
+            <div style={sub}>An actual date.</div>
             <Btn onClick={() => goTo(3)} label="keep going ↓" />
             <PageDots total={TOTAL} current={page} goTo={goTo} />
           </div>
         )}
 
-        {/* ── Page 3: The buildup ── */}
+        {/* ── Page 3: Buildup ── */}
         {page === 3 && (
           <div style={screen} className="di-screen">
-            <img
-              src="/gifpuk_files/200(7).webp"
-              alt="gifpuk sticker"
-              className="di-sticker"
-              style={{ width:140, height:"auto", marginBottom:"1.4rem" }}
-            />
+            <img src="/gifpuk_files/200(7).webp" alt="" className="di-sticker"
+              style={{ width:140, height:"auto", marginBottom:"1.4rem" }} />
             <Btn onClick={() => goTo(4)} label="so the question is... ↓" />
             <PageDots total={TOTAL} current={page} goTo={goTo} />
           </div>
@@ -341,7 +383,6 @@ const floating = [
             <div style={eyebrow}>so, the question is</div>
             <div style={big}>Will you go on<br />a date with me?</div>
 
-            {/* extra yes buttons that spawn */}
             <div style={{ position:"relative", width:"100%", maxWidth:340, height:160, display:"flex", alignItems:"center", justifyContent:"center" }}>
               {extraYes.map((ey) => (
                 <button key={ey.id} onClick={handleYes} style={{
@@ -353,45 +394,34 @@ const floating = [
                   padding:"8px 22px", borderRadius:99, cursor:"pointer",
                   boxShadow:"0 2px 12px rgba(91,184,212,0.3)",
                   left:"50%", top:"50%",
-                }}>
-                  yes 💙
-                </button>
+                }}>yes 💙</button>
               ))}
 
-              {/* Main yes */}
               <button onClick={handleYes} style={{
                 fontFamily:"'Josefin Sans',sans-serif", fontSize:"0.65rem", letterSpacing:"0.22em",
                 textTransform:"uppercase", fontWeight:400, color:"#fff",
                 background:"linear-gradient(135deg,#5bb8d4,#3da0c0)",
                 border:"none", padding:"13px 36px", borderRadius:99, cursor:"pointer",
                 boxShadow:"0 4px 20px rgba(91,184,212,0.4)", position:"relative", zIndex:2,
-              }}>
-                Yes!! 🌸
-              </button>
+              }}>Yes!! 🌸</button>
 
-              {/* No button — runs away */}
               {!noGone && (
                 <button
-                  onMouseEnter={dodgeNo}
-                  onTouchStart={dodgeNo}
-                  onClick={dodgeNo}
+                  onMouseEnter={dodgeNo} onTouchStart={dodgeNo} onClick={dodgeNo}
                   style={{
                     position:"absolute", left:"50%", top:"50%",
                     transform:`translate(calc(-50% + ${noDx}px), calc(30px + ${noDy}px))`,
                     fontFamily:"'Josefin Sans',sans-serif", fontSize:"0.58rem", letterSpacing:"0.18em",
                     textTransform:"uppercase", fontWeight:300,
-                    color:"rgba(90,138,154,0.8)",
+                    color:"rgba(30,77,94,0.95)",
                     background:"rgba(255,255,255,0.4)", border:"1px solid rgba(91,184,212,0.3)",
                     padding:"8px 20px", borderRadius:99, cursor:"pointer",
                     opacity: 0.9,
-                    scale: `${Math.max(0.5, 1 - noCount * 0.04)}`,
+                    scale:`${Math.max(0.5, 1 - noCount * 0.04)}`,
                     transition:"transform 0.18s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s",
-                    backdropFilter:"blur(4px)",
-                    whiteSpace:"nowrap",
+                    backdropFilter:"blur(4px)", whiteSpace:"nowrap",
                   }}
-                >
-                  {noLabels[Math.min(noCount, noLabels.length - 1)]}
-                </button>
+                >{noLabels[Math.min(noCount, noLabels.length - 1)]}</button>
               )}
             </div>
 
@@ -405,7 +435,6 @@ const floating = [
                 {hints[Math.min(noCount - 1, hints.length - 1)]}
               </div>
             )}
-
             <PageDots total={TOTAL} current={page} goTo={goTo} />
           </div>
         )}
@@ -430,7 +459,6 @@ const floating = [
           <div style={screen} className="di-screen">
             <div style={eyebrow}>back at the room</div>
             <div style={{ fontFamily:"'DM Serif Display',serif", fontStyle:"italic", fontSize:"1.9rem", color:"#1e4d5e", lineHeight:1.25, marginBottom:"1.4rem" }}>The night.</div>
-
             <div style={{ display:"grid", gridTemplateColumns:"72px 1fr", gap:"0 1rem", width:"100%", maxWidth:380, textAlign:"left", marginBottom:"1.6rem", alignItems:"start" }}>
               <div style={{ fontFamily:"'Josefin Sans',sans-serif", fontSize:"0.56rem", letterSpacing:"0.16em", color:"#5bb8d4", fontWeight:300, textTransform:"uppercase", textAlign:"right", paddingTop:"0.2rem", opacity:0.8 }}>drinks</div>
               <div>
@@ -451,7 +479,6 @@ const floating = [
                 {drink && <div style={{ fontFamily:"'Lato',sans-serif", fontStyle:"italic", fontSize:"0.8rem", color:"#5bb8d4", marginTop:"0.4rem" }}>{drink} it is. ✓</div>}
               </div>
             </div>
-
             <SceneRow time="late" title="Mini paint date" note="No skill required." accent />
             <SceneRow time="wind down" title="Movie night" note="Something good, or something scary." />
             <SceneRow time="even later" title="Drinks + talk + just exist" note="" />
@@ -467,14 +494,9 @@ const floating = [
             <div style={{ fontFamily:"'DM Serif Display',serif", fontStyle:"italic", fontSize:"1.9rem", color:"#1e4d5e", lineHeight:1.25, marginBottom:"1.4rem" }}>
               Calligraphy workshop.
             </div>
-            <SceneRow
-              time="3 – 6 PM"
-              title="VAST Bhutan"
-              note="Slow, deliberate marks."
-              accent
-            />
+            <SceneRow time="3 – 6 PM" title="VAST Bhutan" note="Slow, deliberate marks." accent />
             <SceneRow time="after" title="Back to college" note="" />
-            <Btn onClick={() => goTo(8)} label="end" />
+            <Btn onClick={() => goTo(8)} label="and finally ↓" />
             <PageDots total={TOTAL} current={page} goTo={goTo} />
           </div>
         )}
@@ -486,24 +508,20 @@ const floating = [
               <CosmosFlower size={44} /><CosmosFlower size={28} opacity={0.35} /><CosmosFlower size={44} />
             </div>
             <div style={eyebrow}>so yeah</div>
-            <img
-              src="/gifpuk_files/200.webp"
-              alt="gifpuk sticker"
-              className="di-sticker"
-              style={{ width:120, height:"auto", marginBottom:"1rem" }}
-            />
+            <img src="/gifpuk_files/200.webp" alt="" className="di-sticker"
+              style={{ width:120, height:"auto", marginBottom:"1rem" }} />
             <div style={{ fontFamily:"'DM Serif Display',serif", fontStyle:"italic", fontSize:"2rem", color:"#1e4d5e", lineHeight:1.3, marginBottom:"0.8rem" }}>
               cant wait
             </div>
             <Divider />
             <div style={{ fontFamily:"'Lato',sans-serif", fontStyle:"italic", fontSize:"0.95rem", color:"#5a8a9a", lineHeight:1.7, maxWidth:260, marginBottom:"2rem" }}>
-              <br />
               Let me know what you think. 🌸
             </div>
             <Btn onClick={() => goTo(0)} label="start over" />
             <PageDots total={TOTAL} current={page} goTo={goTo} />
           </div>
         )}
+
       </div>
     </>
   );
