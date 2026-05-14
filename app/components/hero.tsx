@@ -5,7 +5,7 @@ import myself from "../../public/myself.jpg";
 export default function hero() {
     return(
 
-    <main>
+    <main id="home">
 
         {/* Hero Section */}
         <section className="relative z-0" data-overlap-hero>
@@ -79,10 +79,10 @@ export default function hero() {
                     alt="Sky Image"
                     width={1000}
                     height={600}
-                    className="w-full h-[600px] md:h-[720px] object-cover"
+                    className="w-full h-[720px] md:h-[860px] object-cover"
                     data-scroll-image-inner
                     data-overlap-image-inner
-                    data-parallax="18"
+                    data-parallax="10"
                 />
 
                 {/* Left text */}

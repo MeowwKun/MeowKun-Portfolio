@@ -155,8 +155,11 @@ export default function ScrollAnimations() {
 
 			const parallaxElements = gsap.utils.toArray<HTMLElement>("[data-parallax]");
 			parallaxElements.forEach((element) => {
+				const amount = element.dataset.parallax
+					? `${element.dataset.parallax}%`
+					: "20%";
 				gsap.to(element, {
-					y: "20%",
+					y: amount,
 					ease: "none",
 					scrollTrigger: {
 						trigger: element,

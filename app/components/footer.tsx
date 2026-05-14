@@ -7,12 +7,12 @@ import gsap from "gsap";
 import { useGsapScrollTrigger } from "../hooks/use-gsap-scroll-trigger";
 
 const footerLinks = [
-  { label: "Video",       href: "#video",       col: "1 / span 7", row: "1 / span 1" },
-  { label: "Photography", href: "#photography", col: "8 / span 5", row: "1 / span 1" },
-  { label: "GitHub",      href: "#github",      col: "1 / span 4", row: "2 / span 1" },
-  { label: "Art",         href: "#art",          col: "5 / span 4", row: "2 / span 2" },
-  { label: "Instagram",   href: "#instagram",   col: "1 / span 4", row: "3 / span 1" },
-  { label: "LinkedIn",    href: "#linkedin",    col: "9 / span 4", row: "2 / span 2" },
+  { label: "Video",       href: "/video",       col: "1 / span 7", row: "1 / span 1" },
+  { label: "Photography", href: "/photography", col: "8 / span 5", row: "1 / span 1" },
+  { label: "GitHub",      href: "https://github.com/MeowwKun",      col: "1 / span 4", row: "2 / span 1" },
+  { label: "Art",         href: "/art",          col: "5 / span 4", row: "2 / span 2" },
+  { label: "Instagram",   href: "https://www.instagram.com/meow0_0kun/",   col: "1 / span 4", row: "3 / span 1" },
+  { label: "LinkedIn",    href: "https://www.linkedin.com/in/sujal-nepal-meowkun/",    col: "9 / span 4", row: "2 / span 2" },
 ];
 
 export default function Footer() {
@@ -38,7 +38,6 @@ export default function Footer() {
         padding: 0,
         marginTop: "auto",
         alignSelf: "stretch",
-        fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif"
       }}
     >
       <div

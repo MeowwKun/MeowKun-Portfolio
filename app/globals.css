@@ -8,13 +8,82 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-montserrat);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+.entry-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.entry-loader.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.entry-loader__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.entry-loader__illustration {
+  width: 180px;
+  height: 180px;
+}
+
+.entry-loader__cosmos {
+  transform-origin: 90px 90px;
+  animation: cosmosSpin 4.8s linear infinite;
+}
+
+.entry-loader__rule {
+  width: 140px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #2A4C4E 50%, transparent 100%);
+  background-size: 200% 100%;
+  opacity: 0.9;
+  animation: loaderSweep 3s ease-in-out infinite;
+}
+
+@keyframes cosmosSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes loaderSweep {
+  0% {
+    background-position: 0% 50%;
+    opacity: 0.4;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 1;
+  }
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.4;
+  }
 }
 
 .custom-cursor {
@@ -25,7 +94,7 @@ body {
   width: 14px;
   height: 14px;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.9);
+  background: #ffffff;
   mix-blend-mode: difference;
   pointer-events: none;
   z-index: 9999;
