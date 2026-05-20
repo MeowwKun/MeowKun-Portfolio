@@ -54,14 +54,14 @@ const journeyItems: JourneyItem[] = [
 	},
 	{
 		id: "04",
-		role: "Media Club",
-		date: "Ongoing",
-		place: "GCIT Media Club",
+		role: "Volunteer",
+		date: "March 18 2026 - March 20 2026",
+		place: "Thimphu",
 		focus: "Storytelling with people",
 		contribution:
-			"Documented events and helped shape visuals that feel personal, not promotional.",
+			"Volunteered for the TEDxThimphu event and helped organize the event.",
 		learning:
-			"Learned to notice the small moments that make a story feel alive.",
+			"Learned to coordinate speakers and craft narratives that connect with diverse audiences.",
 		image: "/experience/tedx.png",
 		imageAlt: "TEDxThimphu"
 	}
