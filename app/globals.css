@@ -3,12 +3,56 @@
 :root {
   --background: #0B0E16;
   --foreground: #ffffff;
+  --accent: #2A4C4E;
+  --surface: #0B0E16;
+  --date-sky: #93d5e8;
+  --date-teal: #2f6f84;
+  --date-teal-light: #5bb8d4;
+  --date-deep: #1f4653;
+  --date-muted: #476b78;
+  --date-cream: rgba(255, 255, 255, 0.55);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-surface: var(--surface);
+  --color-date-sky: var(--date-sky);
+  --color-date-teal: var(--date-teal);
+  --color-date-teal-light: var(--date-teal-light);
+  --color-date-deep: var(--date-deep);
+  --color-date-muted: var(--date-muted);
   --font-sans: var(--font-montserrat);
+}
+
+@utility section-title {
+  @apply text-4xl sm:text-5xl lg:text-6xl font-black tracking-[0.45rem];
+}
+
+@utility section-eyebrow {
+  @apply text-sm tracking-[0.35rem] uppercase text-white/70;
+}
+
+@utility gallery-tile {
+  @apply overflow-hidden border border-white/10 bg-surface shadow-[0_14px_36px_rgba(0,0,0,0.35)] transition-transform duration-500 group-hover:scale-[1.03];
+}
+
+@utility page-x {
+  @apply px-4 sm:px-8 lg:px-15;
+}
+
+@utility section-x {
+  @apply px-4 sm:px-12 lg:px-30;
+}
+
+@utility brand-eyebrow {
+  @apply font-sans text-[9px] tracking-[0.3em] uppercase;
+}
+
+@utility brand-heading {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  @apply font-black leading-none tracking-[-0.02em];
 }
 
 body {
@@ -112,3 +156,84 @@ body {
     display: block;
   }
 }
+
+/* Date invitation page */
+.date-page {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #e8f7fc 0%, #d0eef8 40%, #e4f5fb 70%, #f0faff 100%);
+  font-family: "Lato", sans-serif;
+  color: var(--date-deep);
+  overflow-x: hidden;
+  position: relative;
+}
+
+.date-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 3rem 2rem 5rem;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.date-eyebrow {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  color: var(--date-teal);
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.date-big {
+  font-family: "DM Serif Display", serif;
+  font-style: italic;
+  font-size: clamp(1.8rem, 5vw, 2.3rem);
+  color: #163a46;
+  line-height: 1.25;
+  margin-bottom: 0.9rem;
+}
+
+.date-sub {
+  font-family: "Lato", sans-serif;
+  font-size: 0.95rem;
+  color: #3e5f6b;
+  line-height: 1.65;
+  max-width: 290px;
+  margin-bottom: 1.8rem;
+  font-style: italic;
+}
+
+@keyframes diSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes diPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.08); }
+}
+
+@keyframes diFloat {
+  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+  50% { transform: translateY(var(--float-y, -12px)) translateX(var(--float-x, 8px)) rotate(var(--float-r, 8deg)); }
+}
+
+@keyframes diSlideIn {
+  from { opacity: 0; transform: translateY(22px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes diPop {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.di-screen { animation: diSlideIn 1.1s cubic-bezier(0.16, 1, 0.3, 1); }
+.di-float { position: absolute; animation: diFloat var(--float-d, 7s) ease-in-out infinite; opacity: 0.7; pointer-events: none; }
+.di-sticker { animation: diPop 0.35s ease; }
