@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import logo from "../../public/logo.png";
 import myself from "../../public/myself.jpg";
 
@@ -65,6 +66,15 @@ export default function hero() {
                         Designer
                     </h1>
 
+                </div>
+
+                <div className="flex justify-center pt-2 sm:pt-4">
+                    <Link
+                        href="/case-studies"
+                        className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/8 px-5 py-3 text-xs font-semibold uppercase tracking-[0.28em] text-white/88 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/12"
+                    >
+                        Explore Case Studies
+                    </Link>
                 </div>
             </div>
 

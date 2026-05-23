@@ -26,6 +26,10 @@
   --font-sans: var(--font-montserrat);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @utility section-title {
   @apply text-4xl sm:text-5xl lg:text-6xl font-black tracking-[0.45rem];
 }

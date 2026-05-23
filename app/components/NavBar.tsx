@@ -142,7 +142,17 @@ export default function NavBar() {
         <div className="flex justify-between items-center">
           <LogoLink onNavigate={isMenuOpen ? closeMenu : undefined} />
 
-          {!isMenuOpen && <MenuOpenBtn onClick={() => setIsMenuOpen(true)} />}
+          {!isMenuOpen && (
+            <div className="flex items-center gap-3">
+              <Link
+                href="/case-studies"
+                className="hidden rounded-full border border-white/15 bg-white/8 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/85 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/12 sm:inline-flex"
+              >
+                Case Studies
+              </Link>
+              <MenuOpenBtn onClick={() => setIsMenuOpen(true)} />
+            </div>
+          )}
           {isMenuOpen && <MenuCloseBtn onClick={closeMenu} />}
         </div>
       </div>
@@ -195,18 +205,19 @@ export default function NavBar() {
             >
               {[
                 { href: "/", label: "Home", num: "01" },
-                { href: "/#projects", label: "Projects", num: "02" },
-                { href: "/#about", label: "About", num: "03" },
-                { href: "/#journey", label: "Journey", num: "04" },
+                { href: "/case-studies", label: "Case Studies", num: "02" },
+                { href: "/#projects", label: "Projects", num: "03" },
+                { href: "/#about", label: "About", num: "04" },
+                { href: "/#journey", label: "Journey", num: "05" },
                 {
                   href: "/#creative-tech",
                   label: "Creative Tech",
-                  num: "05",
+                  num: "06",
                 },
                 {
                   href: "/#exploring",
                   label: "Exploring",
-                  num: "06",
+                  num: "07",
                 },
               ].map(({ href, label, num }) => (
                 <a
