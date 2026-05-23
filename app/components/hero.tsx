@@ -10,10 +10,10 @@ export default function hero() {
         {/* Hero Section */}
         <section className="relative z-0" data-overlap-hero>
 
-            <div className="w-full flex flex-col gap-8 p-30" data-stagger>
-                <div className="w-full flex justify-between items-center">
+            <div className="w-full flex flex-col gap-8 px-4 py-10 sm:px-8 md:p-15 lg:p-30" data-stagger>
+                <div className="w-full flex flex-col gap-6 sm:flex-row sm:justify-between sm:items-center">
                     <div className="items-center">
-                        <h1 className="text-3xl tracking-[0.45rem]">
+                        <h1 className="text-xl tracking-[0.25rem] sm:text-2xl sm:tracking-[0.35rem] md:text-3xl md:tracking-[0.45rem]">
                             a{" "}
                             <span className="text-[#2A4C4E] inline-block" data-wave>
                                 {"seriously".split("").map((letter, index) => (
@@ -28,17 +28,23 @@ export default function hero() {
                             </span>
                             {" "}good
                         </h1>
-                        <h1 className="text-3xl tracking-[0.45rem] font-black mt-2" data-split-text>
+                        <h1 className="text-xl tracking-[0.25rem] sm:text-2xl sm:tracking-[0.35rem] md:text-3xl md:tracking-[0.45rem] font-black mt-2" data-split-text>
                             CreativeEngineer
                         </h1>
                     </div>
 
-                    <div className="flex justify-end">
-                        <Image src={logo} alt="Logo" width={300} height={300} />
+                    <div className="hidden sm:flex justify-end">
+                        <Image
+                            src={logo}
+                            alt="Logo"
+                            width={300}
+                            height={300}
+                            className="w-[120px] sm:w-[200px] md:w-[300px] h-auto"
+                        />
                     </div>
                 </div>
 
-                <div className="w-full flex justify-center items-center gap-35 pt-20">
+                <div className="w-full flex flex-wrap justify-center items-center gap-x-4 gap-y-3 sm:gap-x-8 md:gap-x-12 pt-8 sm:pt-14 md:pt-20">
 
                     <h1 className="text-foreground text-sm tracking-[0.45rem] font-black" data-split-text>
                         AI
@@ -79,16 +85,16 @@ export default function hero() {
                     alt="Sky Image"
                     width={1000}
                     height={600}
-                    className="w-full h-[720px] md:h-[860px] object-cover"
+                    className="w-full h-[420px] sm:h-[560px] md:h-[720px] lg:h-[860px] object-cover"
                     data-scroll-image-inner
                     data-overlap-image-inner
                     data-parallax="10"
                 />
 
                 {/* Left text */}
-                <div className="absolute left-30 top-40 -translate-y-1/2" data-reveal>
+                <div className="absolute left-4 top-24 sm:left-12 sm:top-40 lg:left-30 -translate-y-1/2" data-reveal>
                     <p
-                        className="text-foreground text-4xl font-black text-left tracking-[0.45em] leading-relaxed"
+                        className="text-foreground text-xl sm:text-2xl md:text-4xl font-black text-left tracking-[0.3em] sm:tracking-[0.45em] leading-relaxed"
                         data-split-text
                     >
                         Experiments in art,<br />
@@ -97,9 +103,9 @@ export default function hero() {
                 </div>
 
                 {/* Bottom right text */}
-                <div className="absolute right-30 bottom-20" data-reveal>
+                <div className="absolute right-4 bottom-8 sm:right-12 sm:bottom-20 lg:right-30" data-reveal>
                     <p
-                        className="text-foreground text-2xl font-black tracking-[0.45em] text-right leading-relaxed"
+                        className="text-foreground text-lg sm:text-xl md:text-2xl font-black tracking-[0.3em] sm:tracking-[0.45em] text-right leading-relaxed"
                         data-split-text
                     >
                         Turning pixels to<br />
@@ -109,7 +115,7 @@ export default function hero() {
 
             </div>
 
-            <div className="w-full flex justify-between items-center pt-20 px-15" data-stagger>
+            <div className="w-full flex flex-col gap-10 lg:flex-row lg:justify-between lg:items-center pt-12 sm:pt-16 md:pt-20 px-4 sm:px-8 lg:px-15" data-stagger>
 
                 <div className="flex flex-col gap-6 max-w-2xl" data-stagger>
                     <h1 className="text-foreground text-1xl tracking-[0.45rem] font-black" data-split-text>
@@ -117,7 +123,7 @@ export default function hero() {
                     </h1>
 
                     <p
-                        className="text-foreground text-2xl font-black leading-relaxed tracking-[0.45em] text-justify"
+                        className="text-foreground text-lg sm:text-2xl font-black leading-relaxed tracking-[0.2em] sm:tracking-[0.45em] text-justify"
                         data-myself-text
                     >
                         {(
@@ -138,8 +144,14 @@ export default function hero() {
                     </p>
                 </div>
 
-                <div className="flex justify-end">
-                    <Image src={myself} alt="My Image" width={500} height={600} className="h-full w-auto pt-13" />
+                <div className="flex justify-center lg:justify-end">
+                    <Image
+                        src={myself}
+                        alt="My Image"
+                        width={500}
+                        height={600}
+                        className="w-full max-w-sm mx-auto lg:max-w-none lg:w-auto h-auto pt-0 lg:pt-13"
+                    />
                 </div>
 
             </div>

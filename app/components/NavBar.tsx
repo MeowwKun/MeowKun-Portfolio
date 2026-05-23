@@ -1,9 +1,65 @@
 'use client';
 
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import logo from "../../public/logo.png";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+
+const menuLabelClass =
+  "block w-[52px] text-right text-[9px] uppercase tracking-[0.28em] text-[#2A4C4E] font-black leading-none transition-colors group-hover:text-white select-none";
+
+function MenuOpenBtn({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className="flex min-h-11 min-w-11 flex-col items-end justify-center gap-[5px] group cursor-pointer"
+      aria-label="Open menu"
+    >
+      {["ham", "buh", "guh"].map((text) => (
+        <span key={text} className={menuLabelClass}>
+          {text}
+        </span>
+      ))}
+    </button>
+  );
+}
+
+function MenuCloseBtn({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className="flex min-h-11 min-w-11 items-center justify-end group cursor-pointer"
+      aria-label="Close menu"
+    >
+      <span className={menuLabelClass}>close</span>
+    </button>
+  );
+}
+
+function LogoLink({
+  onNavigate,
+}: {
+  onNavigate?: () => void;
+}) {
+  const pathname = usePathname();
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    onNavigate?.();
+
+    if (pathname === "/") {
+      e.preventDefault();
+      document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <Link href="/" onClick={handleLogoClick} aria-label="Back to home">
+      <Image src={logo} alt="Logo" width={70} height={700} />
+    </Link>
+  );
+}
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -79,37 +135,15 @@ export default function NavBar() {
     }, 450);
   };
 
-  const HamburgerBtn = ({
-    onClick,
-    isClose,
-  }: {
-    onClick: () => void;
-    isClose?: boolean;
-  }) => (
-    <button
-      onClick={onClick}
-      className="flex flex-col items-end gap-[5px] group cursor-pointer"
-      aria-label={isClose ? "Close menu" : "Open menu"}
-    >
-      {["ham", "buh", isClose ? "close" : "guh"].map((text) => (
-        <span
-          key={text}
-          className="block w-[52px] text-right text-[9px] uppercase tracking-[0.28em] text-[#2A4C4E] font-black leading-none transition-colors group-hover:text-white select-none"
-        >
-          {text}
-        </span>
-      ))}
-    </button>
-  );
-
   return (
     <>
       {/* Fixed Navbar */}
       <div className="fixed top-0 left-0 w-full z-[60] px-6 py-4">
         <div className="flex justify-between items-center">
-          <Image src={logo} alt="Logo" width={70} height={700} />
+          <LogoLink onNavigate={isMenuOpen ? closeMenu : undefined} />
 
-          <HamburgerBtn onClick={() => setIsMenuOpen(true)} />
+          {!isMenuOpen && <MenuOpenBtn onClick={() => setIsMenuOpen(true)} />}
+          {isMenuOpen && <MenuCloseBtn onClick={closeMenu} />}
         </div>
       </div>
 
@@ -126,9 +160,9 @@ export default function NavBar() {
           {/* Top bar */}
           <div className="px-6 py-4">
             <div className="flex items-center justify-between">
-              <Image src={logo} alt="Logo" width={70} height={700} />
+              <LogoLink onNavigate={closeMenu} />
 
-              <HamburgerBtn onClick={closeMenu} isClose />
+              <MenuCloseBtn onClick={closeMenu} />
             </div>
           </div>
 

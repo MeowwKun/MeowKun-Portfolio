@@ -2,195 +2,125 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import logo from "../../public/logo.png";
 import gsap from "gsap";
 import { useGsapScrollTrigger } from "../hooks/use-gsap-scroll-trigger";
 
-const footerLinks = [
-  { label: "Video",       href: "/video",       col: "1 / span 7", row: "1 / span 1" },
-  { label: "Photography", href: "/photography", col: "8 / span 5", row: "1 / span 1" },
-  { label: "GitHub",      href: "https://github.com/MeowwKun",      col: "1 / span 4", row: "2 / span 1" },
-  { label: "Art",         href: "/art",          col: "5 / span 4", row: "2 / span 2" },
-  { label: "Instagram",   href: "https://www.instagram.com/meow0_0kun/",   col: "1 / span 4", row: "3 / span 1" },
-  { label: "LinkedIn",    href: "https://www.linkedin.com/in/sujal-nepal-meowkun/",    col: "9 / span 4", row: "2 / span 2" },
+type FooterLink = {
+	label: string;
+	href: string;
+	external?: boolean;
+	gridClass: string;
+};
+
+const footerLinks: FooterLink[] = [
+	{ label: "Video", href: "/video", gridClass: "lg:[grid-column:1/span_7] lg:[grid-row:1/span_1]" },
+	{ label: "Photography", href: "/photography", gridClass: "lg:[grid-column:8/span_5] lg:[grid-row:1/span_1]" },
+	{ label: "GitHub", href: "https://github.com/MeowwKun", gridClass: "lg:[grid-column:1/span_4] lg:[grid-row:2/span_1]", external: true },
+	{ label: "Art", href: "/art", gridClass: "lg:[grid-column:5/span_4] lg:[grid-row:2/span_2]" },
+	{ label: "LinkedIn", href: "https://www.linkedin.com/in/sujal-nepal-meowkun/", gridClass: "lg:[grid-column:9/span_4] lg:[grid-row:2/span_2]", external: true },
+	{ label: "Instagram", href: "https://www.instagram.com/meow0_0kun/", gridClass: "lg:[grid-column:1/span_4] lg:[grid-row:3/span_1]", external: true },
 ];
 
+const tileClassName =
+	"rounded-[1.4rem] p-6 pb-[1.1rem] bg-white/70 hover:bg-white/90 transition-colors text-black/86 no-underline flex items-end min-h-[120px] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_10px_28px_rgba(0,0,0,0.2)]";
+
 export default function Footer() {
-  const footerRef = useRef<HTMLDivElement | null>(null);
+	const footerRef = useRef<HTMLDivElement | null>(null);
 
-  useGsapScrollTrigger(footerRef, (element) =>
-    gsap.from(element, {
-      yPercent: 30,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: element,
-        start: "top 85%",
-        end: "bottom bottom",
-        scrub: 1
-      }
-    })
-  );
+	useGsapScrollTrigger(footerRef, (element) =>
+		gsap.from(element, {
+			yPercent: 30,
+			opacity: 0,
+			scrollTrigger: {
+				trigger: element,
+				start: "top 85%",
+				end: "bottom bottom",
+				scrub: 1,
+			},
+		})
+	);
 
-  return (
-    <footer
-      style={{
-        width: "100%",
-        padding: 0,
-        marginTop: "auto",
-        alignSelf: "stretch",
-      }}
-    >
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          borderRadius: "2rem",
-          background: "linear-gradient(to bottom, #0B0E16 0%, #2A4C4E 100%)",
-          padding: "2rem",
-          overflow: "hidden",
-  		  minHeight: "100vh",
-        }}
-        ref={footerRef}
-      >
-        {/* MEOW KUN watermark */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            pointerEvents: "none",
-            zIndex: 1,
-          }}
-        >
-          <div
-            style={{
-              textAlign: "center",
-              color: "rgba(0, 0, 0, 0.6)",
-              fontWeight: 900,
-              letterSpacing: "0.55em",
-              fontSize: "clamp(2rem, 5vw, 3.8rem)",
-              lineHeight: 1.2,
-              userSelect: "none",
-              textTransform: "uppercase",
-            }}
-            data-parallax="22"
-          >
-            MEOW
-            <br />
-            KUN
-          </div>
-        </div>
+	return (
+		<footer className="w-full p-0 mt-auto self-stretch">
+			<div
+				ref={footerRef}
+				className="relative w-full rounded-[2rem] bg-gradient-to-b from-background to-accent p-4 sm:p-8 overflow-hidden min-h-[100vh]"
+			>
+				<div className="pointer-events-none absolute inset-0 flex items-center justify-center z-[1]">
+					<div
+						className="text-center text-black/60 font-black tracking-[0.55em] text-[clamp(2rem,5vw,3.8rem)] leading-[1.2] select-none uppercase"
+						data-parallax="22"
+					>
+						MEOW
+						<br />
+						KUN
+					</div>
+				</div>
 
-        <div
-          style={{
-            position: "relative",
-            zIndex: 2,
-            overflow: "hidden",
-            marginBottom: "1.5rem",
-            color: "rgba(255, 255, 255, 0.65)",
-            fontSize: "0.85rem",
-            letterSpacing: "0.4em",
-            textTransform: "uppercase",
-            whiteSpace: "nowrap"
-          }}
-          data-marquee
-        >
-          <div
-            style={{
-              display: "inline-flex",
-              gap: "3rem",
-              paddingLeft: "1.5rem"
-            }}
-            data-marquee-track
-          >
-            <span>MeowKun • Creative Engineer • Visual Systems</span>
-            <span aria-hidden="true">MeowKun • Creative Engineer • Visual Systems</span>
-            <span aria-hidden="true">MeowKun • Creative Engineer • Visual Systems</span>
-          </div>
-        </div>
+				<div
+					className="relative z-[2] overflow-hidden mb-6 text-white/65 text-[0.85rem] tracking-[0.4em] uppercase whitespace-nowrap"
+					data-marquee
+				>
+					<div className="inline-flex gap-12 pl-6" data-marquee-track>
+						<span>MeowKun • Creative Engineer • Visual Systems</span>
+						<span aria-hidden="true">MeowKun • Creative Engineer • Visual Systems</span>
+						<span aria-hidden="true">MeowKun • Creative Engineer • Visual Systems</span>
+					</div>
+				</div>
 
-        {/* Grid */}
-        <div
-          style={{
-            position: "relative",
-            zIndex: 2,
-            display: "grid",
-            gridTemplateColumns: "repeat(12, 1fr)",
-            gridTemplateRows: "300px 190px 190px",
-            gap: "0.75rem",
-          }}
-          data-stagger
-        >
-          {footerLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="bg-white/70 hover:bg-white/90 transition-colors"
-              data-stagger-item
-              style={{
-                gridColumn: link.col,
-                gridRow: link.row,
-                borderRadius: "1.4rem",
-                padding: "1.5rem 1.5rem 1.1rem",
-                color: "rgba(0,0,0,0.86)",
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "flex-end",
-                boxShadow: "inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 10px 28px rgba(0,0,0,0.2)",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "0.7rem",
-                  fontWeight: 900,
-                  letterSpacing: "0.32em",
-                  textTransform: "uppercase",
-                  color: "#000000",
-                }}
-              >
-                {link.label}
-              </span>
-            </a>
-          ))}
-        </div>
+				<div
+					className="relative z-[2] grid grid-cols-2 gap-3 auto-rows-min lg:grid-cols-12 lg:gap-3 lg:[grid-template-rows:300px_190px_190px]"
+					data-stagger
+				>
+					{footerLinks.map((link) => {
+						const label = (
+							<span className="text-[0.7rem] font-black tracking-[0.32em] uppercase text-black">
+								{link.label}
+							</span>
+						);
+						const className = `${tileClassName} lg:min-h-0 ${link.gridClass}`;
 
-        <div
-          style={{
-            position: "relative",
-            zIndex: 2,
-            marginTop: "2rem",
-            display: "grid",
-            gridTemplateColumns: "120px 1fr auto",
-            alignItems: "flex-start",
-            color: "rgba(255, 255, 255, 0.85)",
-            fontSize: "0.85rem",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-          }}
-        >
-          <div style={{ marginTop: "0.75rem", marginLeft: "0.5rem" }}>
-            <Image src={logo} alt="MeowKun" width={96} height={96} />
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem", marginLeft: "2.5rem" }}>
-            <a
-              href="mailto:sujal75.n@gmail.com"
-              style={{ color: "inherit", textDecoration: "none" }}
-            >
-              sujal75.n@gmail.com
-            </a>
-            <a
-              href="tel:+97517313524"
-              style={{ color: "inherit", textDecoration: "none" }}
-            >
-              +975-17313524
-            </a>
-            <span>Thimphu, Bhutan</span>
-          </div>
-          <span style={{ justifySelf: "end" }}>© MeowKun</span>
-        </div>
-      </div>
-    </footer>
-  );
+						if (link.external) {
+							return (
+								<a
+									key={link.label}
+									href={link.href}
+									className={className}
+									data-stagger-item
+									target="_blank"
+									rel="noreferrer"
+								>
+									{label}
+								</a>
+							);
+						}
+
+						return (
+							<Link key={link.label} href={link.href} className={className} data-stagger-item>
+								{label}
+							</Link>
+						);
+					})}
+				</div>
+
+				<div className="relative z-[2] mt-8 grid grid-cols-1 sm:grid-cols-[120px_1fr_auto] items-start gap-6 text-white/85 text-[0.85rem] tracking-[0.18em] uppercase">
+					<div className="mt-3 ml-2">
+						<Image src={logo} alt="MeowKun" width={96} height={96} />
+					</div>
+					<div className="flex flex-col gap-2.5 sm:ml-10">
+						<a href="mailto:sujal75.n@gmail.com" className="text-inherit no-underline">
+							sujal75.n@gmail.com
+						</a>
+						<a href="tel:+97517313524" className="text-inherit no-underline">
+							+975-17313524
+						</a>
+						<span>Thimphu, Bhutan</span>
+					</div>
+					<span className="sm:justify-self-end">© MeowKun</span>
+				</div>
+			</div>
+		</footer>
+	);
 }

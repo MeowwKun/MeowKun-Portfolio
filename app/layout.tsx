@@ -23,6 +23,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Josefin+Sans:wght@200;300;400&family=Lato:ital,wght@0,300;0,400;1,300;1,400&display=swap"
+        />
+      </head>
       <body
         className={`${montserrat.variable} antialiased`}
       >
