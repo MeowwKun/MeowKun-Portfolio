@@ -12,19 +12,19 @@ export interface ProjectStory {
 }
 
 export const projectStories: ProjectStory[] = [
-	{
+{
 		id: "01",
-		title: "Namzoed - Super App",
+		title: "Sweet Escapes Bhutan – Tourism Website",
 		year: "2026",
-		role: "Web Developer",
+		role: "Developer",
 		concept:
-			"Built a responsive web platform with expressive motion and a clear, fast structure for daily use.",
-		why: "To make a super app feel lightweight, elegant, and reliable.",
-		tech: ["Next.js", "Supabase", "GSAP", "HTML/CSS/JS"],
+			"Developed a responsive tourism website with a focus on modern UI, performance, and user experience.",
+		why: "To create a seamless and visually engaging platform for exploring tourism experiences in Bhutan.",
+		tech: ["Next.js", "Tailwind", "Vercel"],
 		challenge:
-			"Keeping animation fluid while maintaining performance and SEO clarity through Google Search Console.",
-		atmosphere: "Deep greens, clean surfaces, patient motion.",
-		interaction: "Soft page transitions, gentle micro-reveals, smooth GSAP easing.",
+			"Balancing visual richness with fast loading speeds and responsive performance across devices.",
+		atmosphere: "Modern layouts, vibrant visuals, smooth navigation.",
+		interaction: "Responsive transitions, clean animations, intuitive browsing experience.",
 	},
 	{
 		id: "02",

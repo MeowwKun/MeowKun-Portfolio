@@ -137,19 +137,12 @@ export default function NavBar() {
 
   return (
     <>
-      {/* Fixed Navbar */}
       <div className="fixed top-0 left-0 w-full z-[60] px-6 py-4">
         <div className="flex justify-between items-center">
           <LogoLink onNavigate={isMenuOpen ? closeMenu : undefined} />
 
           {!isMenuOpen && (
             <div className="flex items-center gap-3">
-              <Link
-                href="/case-studies"
-                className="hidden rounded-full border border-white/15 bg-white/8 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/85 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/12 sm:inline-flex"
-              >
-                Case Studies
-              </Link>
               <MenuOpenBtn onClick={() => setIsMenuOpen(true)} />
             </div>
           )}
