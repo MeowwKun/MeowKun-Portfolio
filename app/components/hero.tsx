@@ -161,6 +161,7 @@ export default function hero() {
                         width={500}
                         height={600}
                         className="w-full max-w-sm mx-auto lg:max-w-none lg:w-auto h-auto pt-0 lg:pt-13"
+                        data-slide-up
                     />
                 </div>
 

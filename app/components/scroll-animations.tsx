@@ -49,12 +49,11 @@ export default function ScrollAnimations() {
 					y: "0%",
 					stagger: 0.05,
 					ease: "power3.out",
+					duration: 0.8,
 					scrollTrigger: {
 						trigger: element,
 						start: "top 85%",
-						end: "top 40%",
-						scrub: 0.8,
-						once: true
+						toggleActions: "play none none none"
 					}
 				});
 			});
@@ -72,8 +71,7 @@ export default function ScrollAnimations() {
 						scrollTrigger: {
 							trigger: element,
 							start: "top 85%",
-							toggleActions: "play none none none",
-							once: true
+							toggleActions: "play none none none"
 						}
 					}
 				);
@@ -111,8 +109,7 @@ export default function ScrollAnimations() {
 						scrollTrigger: {
 							trigger: container,
 							start: "top 85%",
-							toggleActions: "play none none none",
-							once: true
+							toggleActions: "play none none none"
 						}
 					}
 				);
@@ -146,8 +143,7 @@ export default function ScrollAnimations() {
 						scrollTrigger: {
 							trigger: container,
 							start: "top 85%",
-							toggleActions: "play none none none",
-							once: true
+							toggleActions: "play none none none"
 						}
 					}
 				);
@@ -161,12 +157,11 @@ export default function ScrollAnimations() {
 				gsap.to(element, {
 					y: amount,
 					ease: "none",
+					duration: 1.5,
 					scrollTrigger: {
 						trigger: element,
-						start: "top bottom",
-						end: "bottom top",
-						scrub: true,
-						once: true
+						start: "top 85%",
+						toggleActions: "play none none none"
 					}
 				});
 			});
@@ -190,13 +185,31 @@ export default function ScrollAnimations() {
 						autoAlpha: 1,
 						x: 0,
 						ease: "power3.out",
+						duration: 0.9,
 						stagger: 0.04,
 						scrollTrigger: {
 							trigger: container,
 							start: "top 85%",
-							end: "top 10%",
-							scrub: 1.2,
-							once: true
+							toggleActions: "play none none none"
+						}
+					}
+				);
+			});
+
+			const slideUpElements = gsap.utils.toArray<HTMLElement>("[data-slide-up]");
+			slideUpElements.forEach((element) => {
+				gsap.fromTo(
+					element,
+					{ y: 60, autoAlpha: 0 },
+					{
+						y: 0,
+						autoAlpha: 1,
+						duration: 0.9,
+						ease: "power3.out",
+						scrollTrigger: {
+							trigger: element,
+							start: "top 85%",
+							toggleActions: "play none none none"
 						}
 					}
 				);
@@ -215,13 +228,12 @@ export default function ScrollAnimations() {
 					{
 						scale: 1,
 						borderRadius: "0.5rem",
-						ease: "none",
+						duration: 0.8,
+						ease: "power3.out",
 						scrollTrigger: {
 							trigger: container,
 							start: "top 90%",
-							end: "top 20%",
-							scrub: 1,
-							once: true
+							toggleActions: "play none none none"
 						}
 					}
 				);
@@ -232,13 +244,12 @@ export default function ScrollAnimations() {
 						{ scale: 1.15 },
 						{
 							scale: 1,
-							ease: "none",
+							duration: 0.8,
+							ease: "power3.out",
 							scrollTrigger: {
 								trigger: container,
 								start: "top 90%",
-								end: "top 20%",
-								scrub: 1,
-								once: true
+								toggleActions: "play none none none"
 							}
 						}
 					);
@@ -339,11 +350,8 @@ export default function ScrollAnimations() {
 				const tl = gsap.timeline({
 					scrollTrigger: {
 						trigger: section,
-						start: "top top",
-						end: `+=${Math.max(1, items.length) * 240}`,
-						scrub: 1,
-						pin: true,
-						once: true
+						start: "top 85%",
+						toggleActions: "play none none none"
 					}
 				});
 
@@ -352,10 +360,13 @@ export default function ScrollAnimations() {
 						item,
 						{ autoAlpha: 0, y: 20 },
 						{ autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" },
-						index === 0 ? 0 : ">-0.2"
+						index === 0 ? 0 : ">-0.1"
 					);
 				});
 			});
+
+			// Refresh ScrollTrigger after all animations are created
+			ScrollTrigger.refresh();
 		});
 
 		return () => {
@@ -365,7 +376,15 @@ export default function ScrollAnimations() {
 					mask.parentNode.removeChild(mask);
 				}
 			});
+
+			// Clear split-ready flag for next mount
+			const splitElements = gsap.utils.toArray<HTMLElement>("[data-split-text]");
+			splitElements.forEach((element) => {
+				delete element.dataset.splitReady;
+			});
+
 			ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+			ScrollTrigger.refresh();
 			ctx.revert();
 		};
 	}, []);

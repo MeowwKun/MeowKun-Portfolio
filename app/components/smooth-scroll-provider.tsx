@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { registerGsapPlugins } from "../lib/gsap";
@@ -14,21 +13,15 @@ export default function SmoothScrollProvider({
 	useEffect(() => {
 		registerGsapPlugins();
 
-		const lenis = new Lenis({
-			lerp: 0.08,
-			smoothWheel: true
-		});
+		// Enable smooth scroll behavior
+		document.documentElement.style.scrollBehavior = "smooth";
 
-		lenis.on("scroll", ScrollTrigger.update);
-		const tick = (time: number) => {
-			lenis.raf(time * 1000);
-		};
-		gsap.ticker.add(tick);
-		gsap.ticker.lagSmoothing(0);
+		// Use native scroll with lightweight ScrollTrigger sync
+		window.addEventListener("scroll", ScrollTrigger.update);
 
 		return () => {
-			gsap.ticker.remove(tick);
-			lenis.destroy();
+			window.removeEventListener("scroll", ScrollTrigger.update);
+			document.documentElement.style.scrollBehavior = "auto";
 		};
 	}, []);
 
