@@ -28,7 +28,7 @@ export default function DesignPage() {
         <span className="text-[10px] uppercase tracking-[0.3em] text-[#2A4C4E]/60">
           02
         </span>
-        <h1 className="text-5xl md:text-7xl font-medium mt-2">Design</h1>
+        <h1 className="text-5xl md:text-7xl font-bold mt-2">Design</h1>
         <p className="text-white/50 mt-4 max-w-xl font-light">
           A selection of interface design work, shown in motion.
         </p>
