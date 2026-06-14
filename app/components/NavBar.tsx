@@ -259,6 +259,7 @@ export default function NavBar() {
                       { href: "/photography", label: "Photography" },
                       { href: "/video", label: "Video" },
                       { href: "/art", label: "Art" },
+                      { href: "/design", label: "Design" },
                     ].map(({ href, label }) => (
                       <a
                         key={label}
