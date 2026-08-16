@@ -9,7 +9,7 @@ export default function About() {
 				<div className="grid grid-cols-12 gap-6 sm:gap-8 lg:gap-10" data-stagger>
 					<div className="col-span-12 lg:col-span-7 text-white/90">
 						<p className="text-lg sm:text-xl md:text-2xl leading-relaxed tracking-[0.04rem] sm:tracking-[0.08rem] font-medium" data-stagger-item>
-							I am an AI and Data Science student at GCIT, drawn to the quiet
+							With a background in AI and Data Science from GCIT, I'm drawn to the quiet
 							places where code becomes texture and interfaces become feeling.
 						</p>
 						<p className="text-base sm:text-lg leading-relaxed mt-4 sm:mt-6 text-white/80 font-medium" data-stagger-item>
